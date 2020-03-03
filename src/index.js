@@ -161,6 +161,13 @@ DeezerOpenApi.prototype.genre.radios = function(id, limit, index) {
   return rq(url, index, limit);
 };
 /*
+ *  INFOS
+ */
+DeezerOpenApi.prototype.infos = function() {
+  var url = 'infos';
+  return rq(url);
+};
+/*
  *  SEARCH
  */
 DeezerOpenApi.prototype.search = function(options, order, limit, index) {
