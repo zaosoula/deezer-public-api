@@ -100,3 +100,51 @@ DeezerOpenApi.prototype.chart.podcasts = function(limit, index) {
   var url = 'chart/0/podcasts';
   return rq(url, index, limit);
 };
+
+/*
+ *  SEARCH
+ */
+DeezerOpenApi.prototype.search = function(options, order, limit, index) {
+  var url = 'search?q=';
+  var query = '';
+  if (typeof options === 'object') {
+    for (var key in options) {
+      query = query + key + ':"' + options[key] + '" ';
+    }
+  } else {
+    query = options;
+  }
+  url = url + query;
+
+  return rq(url, index, limit, order);
+};
+
+DeezerOpenApi.prototype.search.artist = function(query, order, limit, index, strict) {
+  var url = 'search/artist?q=' + query;
+  return rq(url, index, limit, order, strict);
+};
+
+DeezerOpenApi.prototype.search.playlist = function(query, order, limit, index, strict) {
+  var url = 'search/playlist?q=' + query;
+  return rq(url, index, limit, order, strict);
+};
+
+DeezerOpenApi.prototype.search.podcast = function(query, order, limit, index, strict) {
+  var url = 'search/podcast?q=' + query;
+  return rq(url, index, limit, order, strict);
+};
+
+DeezerOpenApi.prototype.search.radio = function(query, order, limit, index, strict) {
+  var url = 'search/radio?q=' + query;
+  return rq(url, index, limit, order, strict);
+};
+
+DeezerOpenApi.prototype.search.track = function(query, order, limit, index, strict) {
+  var url = 'search/track?q=' + query;
+  return rq(url, index, limit, order, strict);
+};
+
+DeezerOpenApi.prototype.search.user = function(query, order, limit, index, strict) {
+  var url = 'search/user?q=' + query;
+  return rq(url, index, limit, order, strict);
+};
