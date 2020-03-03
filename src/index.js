@@ -27,6 +27,48 @@ DeezerOpenApi.prototype.album.tracks = function(id, limit, index) {
   return rq(url, index, limit);
 };
 /*
+ *  ARTIST
+ */
+DeezerOpenApi.prototype.artist = function(id, limit, index) {
+  var url = 'artist/' + id;
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.artist.top = function(id, limit, index) {
+  var url = 'artist/' + id + '/top';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.artist.albums = function(id, limit, index) {
+  var url = 'artist/' + id + '/albums';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.artist.comments = function(id, limit, index) {
+  var url = 'artist/' + id + '/comments';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.artist.fans = function(id, limit, index) {
+  var url = 'artist/' + id + '/fans';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.artist.related = function(id, limit, index) {
+  var url = 'artist/' + id + '/related';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.artist.radio = function(id, limit, index) {
+  var url = 'artist/' + id + '/radio';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.artist.playlists = function(id, limit, index) {
+  var url = 'artist/' + id + '/playlists';
+  return rq(url, index, limit);
+};
+/*
  *  CHART
  */
 DeezerOpenApi.prototype.chart = function(limit, index) {
