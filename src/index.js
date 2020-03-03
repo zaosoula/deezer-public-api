@@ -248,6 +248,83 @@ DeezerOpenApi.prototype.track = function(id, limit, index) {
   return rq(url, index, limit);
 };
 /*
+ *  USER
+ */
+DeezerOpenApi.prototype.user = function(id, limit, index) {
+  var url = 'user/'+id;
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.user.albums = function(id, limit, index) {
+  var url = 'user/' + id + '/albums';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.user.artists = function(id, limit, index) {
+  var url = 'user/' + id + '/artists';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.user.charts = function(id, limit, index) {
+  var url = 'user/' + id + '/charts';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.user.charts.tracks = function(id, limit, index) {
+  var url = 'user/' + id + '/charts/tracks';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.user.charts.albums = function(id, limit, index) {
+  var url = 'user/' + id + '/charts/albums';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.user.charts.playlists = function(id, limit, index) {
+  var url = 'user/' + id + '/charts/playlists';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.user.charts.artists = function(id, limit, index) {
+  var url = 'user/' + id + '/charts/artists';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.user.flow = function(id, limit, index) {
+  var url = 'user/' + id + '/flow';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.user.followings = function(id, limit, index) {
+  var url = 'user/' + id + '/followings';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.user.followers = function(id, limit, index) {
+  var url = 'user/' + id + '/followers';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.user.playlists = function(id, limit, index) {
+  var url = 'user/' + id + '/playlists';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.user.podcasts = function(id, limit, index) {
+  var url = 'user/' + id + '/podcasts';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.user.radios = function(id, limit, index) {
+  var url = 'user/' + id + '/radios';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.user.tracks = function(id, limit, index) {
+  var url = 'user/' + id + '/tracks';
+  return rq(url, index, limit);
+};
+/*
  *  SEARCH
  */
 DeezerOpenApi.prototype.search = function(options, order, limit, index) {
