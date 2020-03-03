@@ -180,11 +180,11 @@ DeezerOpenApi.prototype.search.user = function(query, order, limit, index, stric
 };
 function rq(url, index, limit, order, strict){
   if(!url.includes("?")) url = url + '?';
-  if (index !== 0) url = url + '&index=' + index;
-  if (limit !== 0) url = url + '&limit=' + limit;
+  if (index && index !== 0) url = url + '&index=' + index;
+  if (limit && limit !== 0) url = url + '&limit=' + limit;
   if (order) url = url + '&order=' + order;
   if (strict) url = url + '&strict=on';
-
+  if(url.endsWith('?')) url = url.slice(0, -1);
   console.log(url);
   return rp({
     url: apiUrl + url,
