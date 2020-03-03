@@ -102,6 +102,13 @@ DeezerOpenApi.prototype.chart.podcasts = function(limit, index) {
 };
 
 /*
+ *  COMMENT
+ */
+DeezerOpenApi.prototype.comment = function(id, limit, index) {
+  var url = 'comment/'+id;
+  return rq(url, index, limit);
+};
+/*
  *  SEARCH
  */
 DeezerOpenApi.prototype.search = function(options, order, limit, index) {
