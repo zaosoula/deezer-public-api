@@ -3,13 +3,13 @@
 This is *Nodejs* wrapper for the [Deezer Public API](http://developers.deezer.com/api) that return promises.
 
 ## Installation
-    npm install deezer-open-api --save
+    npm install deezer-public-api --save
 
 ## Usage example
 
 ```js
-const DeezerOpenApi = require('deezer-open-api');
-let deezer = new DeezerOpenApi();
+const DeezerPublicApi = require('deezer-public-api');
+let deezer = new DeezerPublicApi();
 
 //Search an artist
 deezer.search.artist('ILYSH').then(function(result) {
