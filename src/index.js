@@ -109,6 +109,29 @@ DeezerOpenApi.prototype.comment = function(id, limit, index) {
   return rq(url, index, limit);
 };
 /*
+ *  EDITORIAL
+ */
+DeezerOpenApi.prototype.editorial = function(id, limit, index) {
+  var url = 'editorial/'+((id)?id:'');
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.editorial.selection = function(id, date, limit, index) {
+  var url = 'editorial/' + id + '/selection';
+  if (date) url = url + '&date=' + date;
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.editorial.charts = function(id, limit, index) {
+  var url = 'editorial/' + id + '/charts';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.editorial.releases = function(id, limit, index) {
+  var url = 'editorial/' + id + '/releases';
+  return rq(url, index, limit);
+};
+/*
  *  SEARCH
  */
 DeezerOpenApi.prototype.search = function(options, order, limit, index) {
