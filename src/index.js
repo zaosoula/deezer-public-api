@@ -175,6 +175,33 @@ DeezerOpenApi.prototype.options = function() {
   return rq(url);
 };
 /*
+ *  PLAYLIST
+ */
+DeezerOpenApi.prototype.playlist = function(id, limit, index) {
+  var url = 'playlist/' + id;
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.playlist.comments = function(id, limit, index) {
+  var url = 'playlist/' + id + '/comments';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.playlist.fans = function(id, limit, index) {
+  var url = 'playlist/' + id + '/fans';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.playlist.tracks = function(id, limit, index) {
+  var url = 'playlist/' + id + '/tracks';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.playlist.radio = function(id, limit, index) {
+  var url = 'playlist/' + id + '/radio';
+  return rq(url, index, limit);
+};
+/*
  *  SEARCH
  */
 DeezerOpenApi.prototype.search = function(options, order, limit, index) {
