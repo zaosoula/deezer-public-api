@@ -5,6 +5,28 @@ function DeezerOpenApi() {
   this.apiUrl = apiUrl;
 }
 /*
+ *  ALBUM
+ */
+DeezerOpenApi.prototype.album = function(id, limit, index) {
+  var url = 'album/' + id;
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.album.comments = function(id, limit, index) {
+  var url = 'album/' + id + '/comments';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.album.fans = function(id, limit, index) {
+  var url = 'album/' + id + '/fans';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.album.tracks = function(id, limit, index) {
+  var url = 'album/' + id + '/tracks';
+  return rq(url, index, limit);
+};
+/*
  *  CHART
  */
 DeezerOpenApi.prototype.chart = function(limit, index) {
