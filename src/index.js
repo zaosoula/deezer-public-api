@@ -241,6 +241,13 @@ DeezerOpenApi.prototype.radio.tracks = function(id, limit, index) {
   return rq(url, index, limit);
 };
 /*
+ *  TRACK
+ */
+DeezerOpenApi.prototype.track = function(id, limit, index) {
+  var url = 'track/'+id;
+  return rq(url, index, limit);
+};
+/*
  *  SEARCH
  */
 DeezerOpenApi.prototype.search = function(options, order, limit, index) {
