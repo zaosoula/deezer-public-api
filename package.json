@@ -5,6 +5,7 @@
   "license": "MIT",
   "author": "Zao Soula",
   "main": "src/index.js",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "directories": {
     "test": "test"
   },
