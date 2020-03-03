@@ -96,8 +96,7 @@ DeezerOpenApi.prototype.chart.playlists = function(limit, index) {
   return rq(url, index, limit);
 };
 
-
-DeezerOpenApi.prototype.chart.podcasts = function(index, limit) {
+DeezerOpenApi.prototype.chart.podcasts = function(limit, index) {
   var url = 'chart/0/podcasts';
   return rq(url, index, limit);
 };
