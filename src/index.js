@@ -214,6 +214,33 @@ DeezerOpenApi.prototype.podcast.episodes = function(id, limit, index) {
   return rq(url, index, limit);
 };
 /*
+ *  RADIO
+ */
+DeezerOpenApi.prototype.radio = function(id, limit, index) {
+  var url = 'radio/' + ((id)?id:'');
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.radio.genres = function(id, limit, index) {
+  var url = 'radio/genres';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.radio.top = function(id, limit, index) {
+  var url = 'radio/top';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.radio.lists = function(id, limit, index) {
+  var url = 'radio/lists';
+  return rq(url, index, limit);
+};
+
+DeezerOpenApi.prototype.radio.tracks = function(id, limit, index) {
+  var url = 'radio/' + id + '/tracks';
+  return rq(url, index, limit);
+};
+/*
  *  SEARCH
  */
 DeezerOpenApi.prototype.search = function(options, order, limit, index) {
