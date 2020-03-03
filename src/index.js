@@ -168,6 +168,13 @@ DeezerOpenApi.prototype.infos = function() {
   return rq(url);
 };
 /*
+ *  OPTIONS
+ */
+DeezerOpenApi.prototype.options = function() {
+  var url = 'options';
+  return rq(url);
+};
+/*
  *  SEARCH
  */
 DeezerOpenApi.prototype.search = function(options, order, limit, index) {
