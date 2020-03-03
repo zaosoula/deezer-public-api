@@ -148,3 +148,17 @@ DeezerOpenApi.prototype.search.user = function(query, order, limit, index, stric
   var url = 'search/user?q=' + query;
   return rq(url, index, limit, order, strict);
 };
+function rq(url, index, limit, order, strict){
+  if(!url.includes("?")) url = url + '?';
+  if (index !== 0) url = url + '&index=' + index;
+  if (limit !== 0) url = url + '&limit=' + limit;
+  if (order) url = url + '&order=' + order;
+  if (strict) url = url + '&strict=on';
+
+  console.log(url);
+  return rp({
+    url: apiUrl + url,
+    json: true
+  });
+}
+module.exports = DeezerOpenApi;
