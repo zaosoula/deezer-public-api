@@ -132,6 +132,13 @@ DeezerOpenApi.prototype.editorial.releases = function(id, limit, index) {
   return rq(url, index, limit);
 };
 /*
+ *  EPISODE
+ */
+DeezerOpenApi.prototype.episode = function(id, limit, index) {
+  var url = 'episode/'+id;
+  return rq(url, index, limit);
+};
+/*
  *  SEARCH
  */
 DeezerOpenApi.prototype.search = function(options, order, limit, index) {
