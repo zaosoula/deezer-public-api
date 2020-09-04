@@ -395,7 +395,6 @@ function rq(url, index, limit, order, strict){
   if (order) url = url + '&order=' + order;
   if (strict) url = url + '&strict=on';
   if(url.endsWith('?')) url = url.slice(0, -1);
-  console.log(url);
   return rp({
     url: apiUrl + url,
     json: true
