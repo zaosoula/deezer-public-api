@@ -1,19 +1,28 @@
 {
   "name": "deezer-public-api",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "This is Nodejs wrapper for the Deezer Public API that return promises.",
+  "keywords": ["deezer-api", "deezer", "api", "rest", "rest-api"],
   "license": "MIT",
-  "author": "Zao Soula",
+  "author": "Zao Soula <contact@zaosoula.fr> (https://github.com/zaosoula/)",
   "main": "src/index.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/index.js"
   },
   "dependencies": {
     "request": "2.88.2",
     "request-promise": "4.2.5"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zaosoula/deezer-public-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zaosoula/deezer-public-api/issues"
+  },
+  "homepage": "https://github.com/zaosoula/deezer-public-api"
 }
