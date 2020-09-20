@@ -1,6 +1,6 @@
 {
   "name": "deezer-public-api",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This is Nodejs wrapper for the Deezer Public API that return promises.",
   "license": "MIT",
   "author": "Zao Soula",
@@ -15,6 +15,5 @@
     "request": "2.88.2",
     "request-promise": "4.2.5"
   },
-  "devDependencies": {},
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" }
+  "devDependencies": {}
 }
