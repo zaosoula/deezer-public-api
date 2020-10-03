@@ -1,4 +1,4 @@
-var rp = require('request-promise');
+const fetch = require('node-fetch');
 const apiUrl = 'https://api.deezer.com/'
 
 function DeezerPublicApi() {
@@ -108,7 +108,7 @@ DeezerPublicApi.prototype.chart.podcasts = function(limit, index) {
  *  COMMENT
  */
 DeezerPublicApi.prototype.comment = function(id, limit, index) {
-  var url = 'comment/'+id;
+  var url = 'comment/' + id;
   return rq(url, index, limit);
 };
 
@@ -116,7 +116,7 @@ DeezerPublicApi.prototype.comment = function(id, limit, index) {
  *  EDITORIAL
  */
 DeezerPublicApi.prototype.editorial = function(id, limit, index) {
-  var url = 'editorial/'+((id)?id:'');
+  var url = 'editorial/' + ((id) ? id : '');
   return rq(url, index, limit);
 };
 
@@ -140,7 +140,7 @@ DeezerPublicApi.prototype.editorial.releases = function(id, limit, index) {
  *  EPISODE
  */
 DeezerPublicApi.prototype.episode = function(id, limit, index) {
-  var url = 'episode/'+id;
+  var url = 'episode/' + id;
   return rq(url, index, limit);
 };
 
@@ -148,7 +148,7 @@ DeezerPublicApi.prototype.episode = function(id, limit, index) {
  *  GENRE
  */
 DeezerPublicApi.prototype.genre = function(id, limit, index) {
-  var url = 'genre/'+((id)?id:'');
+  var url = 'genre/' + ((id) ? id : '');
   return rq(url, index, limit);
 };
 
@@ -215,7 +215,7 @@ DeezerPublicApi.prototype.playlist.radio = function(id, limit, index) {
  *  PODCAST
  */
 DeezerPublicApi.prototype.podcast = function(id, limit, index) {
-  var url = 'podcast/' + ((id)?id:'');
+  var url = 'podcast/' + ((id) ? id : '');
   return rq(url, index, limit);
 };
 
@@ -228,7 +228,7 @@ DeezerPublicApi.prototype.podcast.episodes = function(id, limit, index) {
  *  RADIO
  */
 DeezerPublicApi.prototype.radio = function(id, limit, index) {
-  var url = 'radio/' + ((id)?id:'');
+  var url = 'radio/' + ((id) ? id : '');
   return rq(url, index, limit);
 };
 
@@ -256,7 +256,7 @@ DeezerPublicApi.prototype.radio.tracks = function(id, limit, index) {
  *  TRACK
  */
 DeezerPublicApi.prototype.track = function(id, limit, index) {
-  var url = 'track/'+id;
+  var url = 'track/' + id;
   return rq(url, index, limit);
 };
 
@@ -264,7 +264,7 @@ DeezerPublicApi.prototype.track = function(id, limit, index) {
  *  USER
  */
 DeezerPublicApi.prototype.user = function(id, limit, index) {
-  var url = 'user/'+id;
+  var url = 'user/' + id;
   return rq(url, index, limit);
 };
 
@@ -388,16 +388,22 @@ DeezerPublicApi.prototype.search.user = function(query, order, limit, index, str
   return rq(url, index, limit, order, strict);
 };
 
-function rq(url, index, limit, order, strict){
-  if(!url.includes("?")) url = url + '?';
-  if (index && index !== 0) url = url + '&index=' + index;
-  if (limit && limit !== 0) url = url + '&limit=' + limit;
-  if (order) url = url + '&order=' + order;
-  if (strict) url = url + '&strict=on';
-  if(url.endsWith('?')) url = url.slice(0, -1);
-  return rp({
-    url: apiUrl + url,
-    json: true
+function rq(url, index, limit, order, strict) {
+  return new Promise((resolve, reject)=>{
+    if (!url.includes("?")) url = url + '?';
+    if (index && index !== 0) url = url + '&index=' + index;
+    if (limit && limit !== 0) url = url + '&limit=' + limit;
+    if (order) url = url + '&order=' + order;
+    if (strict) url = url + '&strict=on';
+    if (url.endsWith('?')) url = url.slice(0, -1);
+    fetch(apiUrl + url, {
+        json: true
+      }).then(res => res.json())
+      .then(json => {
+        resolve(json)
+        // console.log(json)
+      }).catch((err) => reject(err));
   });
 }
+
 module.exports = DeezerPublicApi;

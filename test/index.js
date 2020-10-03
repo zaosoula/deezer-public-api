@@ -2,6 +2,7 @@ const DeezerPublicApi = require('..');
 let deezer = new DeezerPublicApi();
 let artistName = 'ILYSH';
 deezer.search.artist(artistName).then((artists)=>{
+
   let artist = artists.data.find((artist)=> {
     console.log(artist.name);
     return artist.name == artistName
@@ -66,4 +67,6 @@ deezer.search.artist(artistName).then((artists)=>{
 
   console.log(albumData);
 
+}).catch((err)=>{
+  console.log("has an error:", err);
 })
