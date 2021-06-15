@@ -2,7 +2,7 @@
 
 This is _Nodejs_ wrapper for the [Deezer Public API](http://developers.deezer.com/api) that return promises.
 
-Forked from https://github.com/zaosoula/deezer-public-api.
+This is forked from https://github.com/zaosoula/deezer-public-api, but has modifications and uses a much faster HTTP library.
 
 ## Installation
 

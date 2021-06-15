@@ -1,6 +1,6 @@
 {
   "name": "@muhimur/deezer-public-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This is Nodejs wrapper for the Deezer Public API that return promises. Forked from deezer-public-api with a faster response time.",
   "keywords": [
     "deezer-api",
@@ -24,10 +24,10 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zaosoula/deezer-public-api.git"
+    "url": "git+https://github.com/muhimur9049/deezer-public-api.git"
   },
   "bugs": {
-    "url": "https://github.com/zaosoula/deezer-public-api/issues"
+    "url": "https://github.com/muhimur9049/deezer-public-api/issues"
   },
-  "homepage": "https://github.com/zaosoula/deezer-public-api"
+  "homepage": "https://github.com/muhimur9049/deezer-public-api"
 }
