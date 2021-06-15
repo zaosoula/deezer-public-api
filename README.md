@@ -15,16 +15,15 @@ const DeezerPublicApi = require("deezer-public-api");
 let deezer = new DeezerPublicApi();
 
 // Search a track
-
 deezer.track("493894782").then(result => console.log(result));
 
-//Search an artist
+// Search an artist
 deezer.search.artist("ILYSH").then(result => console.log(result));
 
-//Get info for the given artist id
+// Get info for the given artist id
 deezer.artist("58671252").then(result => console.log(result));
 
-//Get album list for the given artist id
+// Get album list for the given artist id
 deezer.artist.albums("58671252").then(result => console.log(result));
 ```
 
