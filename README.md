@@ -12,7 +12,7 @@ This is forked from https://github.com/zaosoula/deezer-public-api, but has modif
 
 ```js
 const DeezerPublicApi = require("deezer-public-api");
-let deezer = new DeezerPublicApi();
+const deezer = new DeezerPublicApi();
 
 // Search a track
 deezer.track("493894782").then(result => console.log(result));
