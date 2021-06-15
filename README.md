@@ -6,12 +6,12 @@ This is forked from https://github.com/zaosoula/deezer-public-api, but it has mo
 
 ## Installation
 
-    npm install deezer-public-api
+    npm install @muhimur/deezer-public-api
 
 ## Usage example
 
 ```js
-const DeezerPublicApi = require("deezer-public-api");
+const DeezerPublicApi = require("@muhimur/deezer-public-api");
 const deezer = new DeezerPublicApi();
 
 // Search a track
