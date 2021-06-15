@@ -1,7 +1,7 @@
 {
-  "name": "deezer-public-api",
+  "name": "@muhimur/deezer-public-api",
   "version": "1.0.0",
-  "description": "This is Nodejs wrapper for the Deezer Public API that return promises.",
+  "description": "This is Nodejs wrapper for the Deezer Public API that return promises. Forked from deezer-public-api with a faster response time.",
   "keywords": [
     "deezer-api",
     "deezer",

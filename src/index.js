@@ -315,7 +315,6 @@ DeezerPublicApi.prototype.user.followings = function (id, limit, index) {
 
 DeezerPublicApi.prototype.user.followers = function (id, limit, index) {
   let url = `user/${id}/followers`;
-  let url = "user/" + id + "/followers";
   return rq(url, index, limit);
 };
 
