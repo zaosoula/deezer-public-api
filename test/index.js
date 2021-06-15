@@ -1,9 +1,9 @@
-const DeezerPublicApi = require('..');
+const DeezerPublicApi = require('');
 let deezer = new DeezerPublicApi();
 let artistName = 'ILYSH';
-deezer.search.artist(artistName).then((artists)=>{
+deezer.search.artist(artistName).then((artists) => {
 
-  let artist = artists.data.find((artist)=> {
+  let artist = artists.data.find((artist) => {
     console.log(artist.name);
     return artist.name == artistName
   });
@@ -11,15 +11,15 @@ deezer.search.artist(artistName).then((artists)=>{
   console.log(artist);
 
   return deezer.artist.albums(artist.id, 1000);
-}).then((result)=>{
+}).then((result) => {
 
-  result.data.map((i)=>{
+  result.data.map((i) => {
     console.log(i);
   })
 
   return deezer.album(result.data[0].id)
-}).then((album)=>{
-  if(album.error){
+}).then((album) => {
+  if (album.error) {
     console.log(album.error);
     return;
   }
@@ -42,19 +42,19 @@ deezer.search.artist(artistName).then((artists)=>{
       name: album.artist.name,
       picture: album.artist.picture_xl,
     },
-    contributors: album.contributors.map((e)=>{
+    contributors: album.contributors.map((e) => {
       return {
         name: e.name,
         picture: e.picture_xl,
       }
     }),
-    genres: album.genres.data.map((o)=>{
+    genres: album.genres.data.map((o) => {
       return {
         id: o.id,
         name: o.name
       }
     }),
-    tracks: album.tracks.data.map((o)=>{
+    tracks: album.tracks.data.map((o) => {
       return {
         title: o.title,
         titleShort: o.title_short,
@@ -67,6 +67,6 @@ deezer.search.artist(artistName).then((artists)=>{
 
   console.log(albumData);
 
-}).catch((err)=>{
+}).catch((err) => {
   console.log("has an error:", err);
 })
