@@ -1,7 +1,12 @@
 {
   "name": "deezer-public-api",
+<<<<<<< Updated upstream
   "version": "1.0.4",
   "description": "This is Nodejs wrapper for the Deezer Public API that return promises.",
+=======
+  "version": "1.0.23",
+  "description": "This is Nodejs wrapper for the Deezer Public API that return promises. Forked from deezer-public-api with a faster response time.",
+>>>>>>> Stashed changes
   "keywords": [
     "deezer-api",
     "deezer",
@@ -21,7 +26,9 @@
   "dependencies": {
     "node-fetch": "2.6.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "all-contributors-cli": "^6.20.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/zaosoula/deezer-public-api.git"
