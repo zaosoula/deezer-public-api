@@ -122,3 +122,4 @@ deezer.artist.albums('58671252').then(function(result) {
 * search.radio(`query`, `order`, `limit`, `index`, `strict`)
 * search.track(`query`, `order`, `limit`, `index`, `strict`)
 * search.user(`query`, `order`, `limit`, `index`, `strict`)
+* search.album(`query`, `order`, `limit`, `index`, `strict`)
