@@ -388,6 +388,11 @@ DeezerPublicApi.prototype.search.user = function(query, order, limit, index, str
   return rq(url, index, limit, order, strict);
 };
 
+DeezerPublicApi.prototype.search.album = function (query, order, limit, index, strict) {
+   var url = 'search/album?q=' + query;
+   return rq(url, index, limit, order, strict);
+};
+
 function rq(url, index, limit, order, strict) {
   return new Promise((resolve, reject)=>{
     if (!url.includes("?")) url = url + '?';
