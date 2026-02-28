@@ -1,0 +1,16 @@
+{
+  "data": [
+    {
+      "id": 25293731,
+      "name": "Guillaume",
+      "picture": "https://api.deezer.com/user/25293731/image",
+      "picture_small": "https://cdn-images.dzcdn.net/images/user/30be50b1187f1c975d2853e6fa3f7e16/56x56-000000-80-0-0.jpg",
+      "picture_medium": "https://cdn-images.dzcdn.net/images/user/30be50b1187f1c975d2853e6fa3f7e16/250x250-000000-80-0-0.jpg",
+      "picture_big": "https://cdn-images.dzcdn.net/images/user/30be50b1187f1c975d2853e6fa3f7e16/500x500-000000-80-0-0.jpg",
+      "picture_xl": "https://cdn-images.dzcdn.net/images/user/30be50b1187f1c975d2853e6fa3f7e16/1000x1000-000000-80-0-0.jpg",
+      "tracklist": "https://api.deezer.com/user/25293731/flow",
+      "type": "user"
+    }
+  ],
+  "total": 300
+}
