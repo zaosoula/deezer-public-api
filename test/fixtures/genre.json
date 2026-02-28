@@ -1,0 +1,10 @@
+{
+  "id": 132,
+  "name": "Pop",
+  "picture": "https://api.deezer.com/genre/132/image",
+  "picture_small": "https://cdn-images.dzcdn.net/images/misc/db7a604d9e7634a67d45cfc86b48370a/56x56-000000-80-0-0.jpg",
+  "picture_medium": "https://cdn-images.dzcdn.net/images/misc/db7a604d9e7634a67d45cfc86b48370a/250x250-000000-80-0-0.jpg",
+  "picture_big": "https://cdn-images.dzcdn.net/images/misc/db7a604d9e7634a67d45cfc86b48370a/500x500-000000-80-0-0.jpg",
+  "picture_xl": "https://cdn-images.dzcdn.net/images/misc/db7a604d9e7634a67d45cfc86b48370a/1000x1000-000000-80-0-0.jpg",
+  "type": "genre"
+}

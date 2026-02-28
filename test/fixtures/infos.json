@@ -1,0 +1,45 @@
+{
+  "country_iso": "FR",
+  "country": "France",
+  "open": true,
+  "pop": "fr",
+  "upload_token": "4f5d33cf4115cd2ee048a68d791987a9",
+  "upload_token_lifetime": 14400,
+  "user_token": null,
+  "hosts": {
+    "stream": "http://cdn-proxy-{0}.dzcdn.net/mobile/1/",
+    "images": "http://cdn-images.dzcdn.net/images"
+  },
+  "ads": {
+    "audio": {
+      "default": {
+        "start": 1,
+        "interval": 3,
+        "unit": "track"
+      }
+    },
+    "display": {
+      "interstitial": {
+        "start": 900,
+        "interval": 900,
+        "unit": "sec"
+      }
+    },
+    "big_native_ads_home": {
+      "iphone": {
+        "enabled": false
+      },
+      "ipad": {
+        "enabled": false
+      },
+      "android": {
+        "enabled": false
+      },
+      "android_tablet": {
+        "enabled": false
+      }
+    }
+  },
+  "has_podcasts": true,
+  "offers": []
+}
