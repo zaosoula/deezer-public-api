@@ -1,0 +1,39 @@
+name: Coverage Badge
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "yarn"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run tests and generate coverage
+        run: yarn test
+
+      - name: Generate Coverage Badge
+        run: |
+          mkdir -p badges
+          npx make-coverage-badge --output-path ./badges/coverage.svg
+
+      - name: Commit Badge
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs(coverage): auto-update coverage badge [skip ci]"
+          file_pattern: "badges/coverage.svg"

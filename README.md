@@ -1,30 +1,51 @@
-# Deezer Public API wrapper
+# Deezer Public API (v2)
 
-This is *Nodejs* wrapper for the [Deezer Public API](http://developers.deezer.com/api) that return promises.
+![Coverage](./badges/coverage.svg)
+
+A modern, modular, and type-safe Node.js wrapper for the [Deezer Public API](http://developers.deezer.com/api).
+
+## Features
+
+- **TypeScript Native**: Full type definitions for all API entities.
+- **Native Fetch**: Uses standard Node.js `fetch` (Node 18+).
+- **Dual Build**: Supports both ESM (`import`) and CJS (`require`) via `unbuild`.
+- **Enhanced Pagination**: Easy navigation with `next()` and `prev()` helpers.
+- **Fluent Search**: Chainable `builder()` for complex queries.
+- **Rate Limiting**: Built-in throttling (50 req / 5s).
 
 ## Installation
-    npm install deezer-public-api --save
 
-## Usage example
+```bash
+npm install deezer-public-api
+```
+
+## Usage
+
+### ESM (Modern)
 
 ```js
-const DeezerPublicApi = require('deezer-public-api');
-let deezer = new DeezerPublicApi();
+import { DeezerPublicApi } from 'deezer-public-api';
+const deezer = new DeezerPublicApi();
 
-//Search an artist
-deezer.search.artist('ILYSH').then(function(result) {
-   console.log(result);
-});
+// Using the Fluent Search Builder
+const query = deezer.search.builder('Daft Punk')
+  .album('Discovery')
+  .build();
 
-//Get info for the given artist id
-deezer.artist('58671252').then(function(result) {
-   console.log(result);
-});
+const results = await deezer.search.artist(query);
 
-//Get album list for the given artist id
-deezer.artist.albums('58671252').then(function(result) {
-   console.log(result);
-});
+// Easy Pagination
+if (results.next) {
+  const nextBatch = await results.next();
+}
+```
+
+### CommonJS (Legacy)
+
+```js
+const { DeezerPublicApi } = require('deezer-public-api');
+const deezer = new DeezerPublicApi();
+// ...
 ```
 ## Available methods
 

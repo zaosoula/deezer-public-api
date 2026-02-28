@@ -1,27 +1,29 @@
 {
   "name": "deezer-public-api",
-  "version": "1.0.4",
-  "description": "This is Nodejs wrapper for the Deezer Public API that return promises.",
+  "version": "2.0.0",
+  "description": "Node.js wrapper for the Deezer Public API using native fetch and TypeScript.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "keywords": [
     "deezer-api",
     "deezer",
     "api",
     "rest",
-    "rest-api"
+    "rest-api",
+    "typescript",
+    "esm"
   ],
   "license": "MIT",
   "author": "Zao Soula <contact@zaosoula.fr> (https://github.com/zaosoula/)",
-  "main": "src/index.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "test": "node test/index.js"
-  },
-  "dependencies": {
-    "node-fetch": "2.6.1"
-  },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/zaosoula/deezer-public-api.git"
@@ -29,5 +31,25 @@
   "bugs": {
     "url": "https://github.com/zaosoula/deezer-public-api/issues"
   },
-  "homepage": "https://github.com/zaosoula/deezer-public-api"
+  "homepage": "https://github.com/zaosoula/deezer-public-api",
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "prepublishOnly": "npm run build",
+    "test": "vitest run --coverage --typecheck",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@vitest/coverage-v8": "^4.0.18",
+    "make-coverage-badge": "^1.2.0",
+    "ts-node": "^10.9.2",
+    "type-fest": "^5.4.4",
+    "typescript": "^5.3.3",
+    "unbuild": "^3.0.0",
+    "vitest": "^4.0.18"
+  },
+  "engines": {
+    "node": ">=18"
+  }
 }
