@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.0 (2026-04-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* complete v2.0.0 migration with object-based API and automation
+
+### Features
+
+* complete v2.0.0 migration with object-based API and automation ([ee61714](https://github.com/zaosoula/deezer-public-api/commit/ee617145aaab1ece8472b1dcd38b514bddfa383e))
+* finalize v2.0.0 migration ([443040c](https://github.com/zaosoula/deezer-public-api/commit/443040cf665f15fa33b2e56a198b6cd4fbfba366))
+* search album ([5189110](https://github.com/zaosoula/deezer-public-api/commit/51891103eacc42e5adca2b338e9f49955a387275))
+* search album ([7280725](https://github.com/zaosoula/deezer-public-api/commit/7280725a983b1a1e275fa4c0201ffcbebf9293f6))
+
 ## [2.0.0] - 2026-04-01
 
 ### Added
