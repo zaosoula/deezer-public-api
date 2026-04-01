@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.0.0](https://github.com/zaosoula/deezer-public-api/compare/v1.0.5...v2.0.0) (2026-04-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* finalize v2.0.0 migration
+
+### Features
+
+* finalize v2.0.0 migration ([b3bbca9](https://github.com/zaosoula/deezer-public-api/commit/b3bbca9e717fc5855fd813628b3900f103afe044))
+
 ## [2.0.0] - 2026-04-01
 
 ### Added
