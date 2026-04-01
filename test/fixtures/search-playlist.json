@@ -1,0 +1,31 @@
+{
+  "data": [
+    {
+      "id": 6423436964,
+      "title": "French Touch Essentials",
+      "public": true,
+      "nb_tracks": 50,
+      "link": "https://www.deezer.com/playlist/6423436964",
+      "picture": "https://api.deezer.com/playlist/6423436964/image",
+      "picture_small": "https://cdn-images.dzcdn.net/images/playlist/424bbf87f277d4fd41e453550cf33032/56x56-000000-80-0-0.jpg",
+      "picture_medium": "https://cdn-images.dzcdn.net/images/playlist/424bbf87f277d4fd41e453550cf33032/250x250-000000-80-0-0.jpg",
+      "picture_big": "https://cdn-images.dzcdn.net/images/playlist/424bbf87f277d4fd41e453550cf33032/500x500-000000-80-0-0.jpg",
+      "picture_xl": "https://cdn-images.dzcdn.net/images/playlist/424bbf87f277d4fd41e453550cf33032/1000x1000-000000-80-0-0.jpg",
+      "checksum": "3fde0943ee7e822e253ec75ac62739da",
+      "tracklist": "https://api.deezer.com/playlist/6423436964/tracks",
+      "creation_date": "2019-08-22 17:32:05",
+      "add_date": "2026-03-07 03:44:43",
+      "mod_date": "2026-03-07 11:39:40",
+      "md5_image": "424bbf87f277d4fd41e453550cf33032",
+      "picture_type": "playlist",
+      "user": {
+        "id": 2834392844,
+        "name": "Laeti - Deezer Dance & EDM Editor",
+        "tracklist": "https://api.deezer.com/user/2834392844/flow",
+        "type": "user"
+      },
+      "type": "playlist"
+    }
+  ],
+  "total": 150
+}

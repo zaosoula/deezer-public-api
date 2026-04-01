@@ -1,27 +1,40 @@
 {
   "name": "deezer-public-api",
-  "version": "1.0.4",
-  "description": "This is Nodejs wrapper for the Deezer Public API that return promises.",
+  "version": "2.0.0",
+  "description": "Node.js wrapper for the Deezer Public API using native fetch and TypeScript.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
   "keywords": [
     "deezer-api",
     "deezer",
     "api",
     "rest",
-    "rest-api"
+    "rest-api",
+    "typescript",
+    "esm"
   ],
   "license": "MIT",
   "author": "Zao Soula <contact@zaosoula.fr> (https://github.com/zaosoula/)",
-  "main": "src/index.js",
-  "directories": {
-    "test": "test"
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "SECURITY.md"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   },
-  "scripts": {
-    "test": "node test/index.js"
-  },
-  "dependencies": {
-    "node-fetch": "2.6.1"
-  },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/zaosoula/deezer-public-api.git"
@@ -29,5 +42,28 @@
   "bugs": {
     "url": "https://github.com/zaosoula/deezer-public-api/issues"
   },
-  "homepage": "https://github.com/zaosoula/deezer-public-api"
+  "homepage": "https://github.com/zaosoula/deezer-public-api",
+  "scripts": {
+    "build": "unbuild",
+    "dev": "unbuild --stub",
+    "prepublishOnly": "npm run build",
+    "test": "vitest run --coverage --typecheck",
+    "test:watch": "vitest",
+    "sync-docs": "tsx scripts/sync-docs.ts",
+    "update-fixtures": "tsx scripts/generate-fixtures.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@vitest/coverage-v8": "^4.0.18",
+    "make-coverage-badge": "^1.2.0",
+    "ts-node": "^10.9.2",
+    "type-fest": "^5.4.4",
+    "typescript": "^5.3.3",
+    "tsx": "^4.19.2",
+    "unbuild": "^3.0.0",
+    "vitest": "^4.0.18"
+  },
+  "engines": {
+    "node": ">=18"
+  }
 }
