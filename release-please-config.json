@@ -1,9 +1,0 @@
-{
-  "packages": {
-    ".": {
-      "release-type": "node",
-      "package-name": "deezer-public-api",
-      "initial-version": "2.0.0"
-    }
-  }
-}

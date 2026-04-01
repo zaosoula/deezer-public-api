@@ -46,7 +46,7 @@
   "scripts": {
     "build": "unbuild",
     "dev": "unbuild --stub",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "node -e \"if(!process.env.GITHUB_ACTIONS) { console.error('\\n\\nERROR: Local publishing is disabled. Use GitHub Actions.\\n\\n'); process.exit(1); }\"",
     "test": "vitest run --coverage --typecheck",
     "test:watch": "vitest",
     "sync-docs": "tsx scripts/sync-docs.ts",
@@ -55,11 +55,12 @@
   "devDependencies": {
     "@types/node": "^20.11.0",
     "@vitest/coverage-v8": "^4.0.18",
+    "changelogen": "^0.6.2",
     "make-coverage-badge": "^1.2.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.2",
     "type-fest": "^5.4.4",
     "typescript": "^5.3.3",
-    "tsx": "^4.19.2",
     "unbuild": "^3.0.0",
     "vitest": "^4.0.18"
   },

@@ -1,16 +1,203 @@
-name: release-please
+name: release
+
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: 'Force a version bump (patch, minor, major)'
+        required: true
+        default: 'auto'
+        type: choice
+        options:
+          - auto
+          - patch
+          - minor
+          - major
+
 permissions:
   contents: write
-  pull-requests: write
+  packages: write
+  id-token: write
+
 jobs:
-  release-please:
+  test-and-badge:
     runs-on: ubuntu-latest
     steps:
-      - uses: googleapis/release-please-action@v4
+      - uses: actions/checkout@v6
         with:
-          release-type: node
-          package-name: deezer-public-api
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Run tests and generate coverage
+        run: npm test
+
+      - name: Generate Coverage Badge
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p badges
+          npx make-coverage-badge --output-path ./badges/coverage.svg
+
+      - name: Commit Badge
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "docs(coverage): auto-update coverage badge [skip ci]"
+          file_pattern: "badges/coverage.svg"
+
+  changelogen:
+    needs: test-and-badge
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.bump.outputs.release_created }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Bump Version and Push
+        id: bump
+        run: |
+          OLD_VERSION=$(node -p "require('./package.json').version")
+          
+          # Determine bump flag from input
+          BUMP_FLAG=""
+          if [[ "${{ github.event.inputs.bump }}" != "auto" && "${{ github.event.inputs.bump }}" != "" ]]; then
+            BUMP_FLAG="--${{ github.event.inputs.bump }}"
+          fi
+          
+          # Use changelogen v0.6 syntax
+          npx changelogen --release $BUMP_FLAG --no-github --push
+          
+          NEW_VERSION=$(node -p "require('./package.json').version")
+          
+          # Set output: released if version changed OR if manually forced
+          if [ "$OLD_VERSION" != "$NEW_VERSION" ] || [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "release_created=true" >> $GITHUB_OUTPUT
+          else
+            echo "release_created=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build:
+    needs: changelogen
+    if: needs.changelogen.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          ref: main
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install
+      - name: Build project
+        run: npm run build
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: |
+            dist
+            package.json
+            README.md
+            LICENSE
+            SECURITY.md
+
+  publish-npm:
+    needs: [changelogen, build]
+    if: needs.changelogen.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    environment:
+      name: npm-publish
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          registry-url: 'https://registry.npmjs.org'
+      - name: Publish to NPM
+        run: npm publish --provenance --ignore-scripts
+
+  publish-github:
+    needs: [changelogen, build]
+    if: needs.changelogen.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@zaosoula'
+      - name: Publish to GitHub Packages
+        run: |
+          npm pkg set name=@zaosoula/deezer-public-api
+          npm publish --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  create-github-release:
+    needs: [changelogen, build, publish-npm, publish-github]
+    if: needs.changelogen.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          ref: main
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install
+      - name: Create GitHub Release
+        run: npx changelogen --github
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
