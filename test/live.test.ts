@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { DeezerPublicApi } from "../src/index.js";
+import { DeezerPublicApi } from "@lib";
 
 function getShape(obj: any): any {
   if (obj === null) return "null";

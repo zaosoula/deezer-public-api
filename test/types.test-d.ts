@@ -1,70 +1,70 @@
 import { describe, it, expectTypeOf } from "vitest";
-import { DeezerPublicApi } from "../src/index.js";
-import {
-  Album,
-  Artist,
-  Track,
-  Playlist,
-  Genre,
-  Radio,
-  Editorial,
-  PaginationResult,
-} from "../src/types/index.js";
+import { DeezerPublicApi } from "@lib";
+import type {
+  DeezerAlbum,
+  DeezerArtist,
+  DeezerTrack,
+  DeezerPlaylist,
+  DeezerGenre,
+  DeezerRadio,
+  DeezerEditorial,
+  DeezerPaginationResult,
+} from "@lib";
 
 describe("Type Definitions", () => {
   const deezer = new DeezerPublicApi();
 
   it("Album type structure", () => {
-    expectTypeOf<Album["id"]>().toBeNumber();
-    expectTypeOf<Album["title"]>().toBeString();
-    expectTypeOf<Album["tracks"]>().toEqualTypeOf<
-      { data: Track[] } | undefined
+    expectTypeOf<DeezerAlbum["id"]>().toBeNumber();
+    expectTypeOf<DeezerAlbum["title"]>().toBeString();
+    expectTypeOf<DeezerAlbum["tracks"]>().toEqualTypeOf<
+      { data: DeezerTrack[] } | undefined
     >();
   });
 
   it("Album module types", () => {
-    expectTypeOf(deezer.album).returns.resolves.toEqualTypeOf<Album>();
+    expectTypeOf(deezer.album).returns.resolves.toEqualTypeOf<DeezerAlbum>();
     expectTypeOf(deezer.album.tracks({ id: 123 })).resolves.toEqualTypeOf<
-      PaginationResult<Track>
+      DeezerPaginationResult<DeezerTrack>
     >();
   });
 
   it("Artist module types", () => {
-    expectTypeOf(deezer.artist({ id: 123 })).resolves.toEqualTypeOf<Artist>();
+    expectTypeOf(deezer.artist({ id: 123 })).resolves.toEqualTypeOf<DeezerArtist>();
     expectTypeOf(deezer.artist.top({ id: 123 })).resolves.toEqualTypeOf<
-      PaginationResult<Track>
+      DeezerPaginationResult<DeezerTrack>
     >();
     expectTypeOf(deezer.artist.albums({ id: 123 })).resolves.toEqualTypeOf<
-      PaginationResult<Album>
+      DeezerPaginationResult<DeezerAlbum>
     >();
   });
 
   it("Search module types", () => {
     expectTypeOf(deezer.search({ q: "query" })).resolves.toEqualTypeOf<
-      PaginationResult<any>
+      DeezerPaginationResult<any>
     >();
     expectTypeOf(deezer.search.track({ q: "query" })).resolves.toEqualTypeOf<
-      PaginationResult<Track>
+      DeezerPaginationResult<DeezerTrack>
     >();
     expectTypeOf(deezer.search.album({ q: "query" })).resolves.toEqualTypeOf<
-      PaginationResult<Album>
+      DeezerPaginationResult<DeezerAlbum>
     >();
   });
 
   it("Common module types", () => {
-    expectTypeOf(deezer.playlist({ id: 123 })).resolves.toEqualTypeOf<Playlist>();
-    expectTypeOf(deezer.genre({ id: 123 })).resolves.toEqualTypeOf<Genre>();
-    expectTypeOf(deezer.radio({ id: 123 })).resolves.toEqualTypeOf<Radio>();
-    expectTypeOf(deezer.editorial({ id: 123 })).resolves.toEqualTypeOf<Editorial>();
-    expectTypeOf(deezer.track({ id: 123 })).resolves.toEqualTypeOf<Track>();
+    expectTypeOf(deezer.playlist({ id: 123 })).resolves.toEqualTypeOf<DeezerPlaylist>();
+    expectTypeOf(deezer.genre({ id: 123 })).resolves.toEqualTypeOf<DeezerGenre>();
+    expectTypeOf(deezer.radio({ id: 123 })).resolves.toEqualTypeOf<DeezerRadio>();
+    expectTypeOf(deezer.editorial({ id: 123 })).resolves.toEqualTypeOf<DeezerEditorial>();
+    expectTypeOf(deezer.track({ id: 123 })).resolves.toEqualTypeOf<DeezerTrack>();
   });
 
   it("Pagination wrapping types", () => {
-    expectTypeOf<PaginationResult<any>>().toEqualTypeOf<{
+    expectTypeOf<DeezerPaginationResult<any>>().toEqualTypeOf<{
       data: any[];
       total?: number;
-      next?: () => Promise<PaginationResult<any>>;
-      prev?: () => Promise<PaginationResult<any>>;
+      next?: () => Promise<DeezerPaginationResult<any>>;
+      prev?: () => Promise<DeezerPaginationResult<any>>;
     }>();
   });
 });

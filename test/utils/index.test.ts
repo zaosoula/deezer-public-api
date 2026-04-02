@@ -1,7 +1,10 @@
 import { describe, it, expect, vi } from "vitest";
-import { changeImageSize, parseDeezerUrl, isShortUrl, resolveShortUrl } from "../../src/utils/index.js";
+import { DeezerPublicApi } from "@lib";
 
 describe("Utils", () => {
+  const api = new DeezerPublicApi();
+  const utils = api.utils;
+  const { changeImageSize, parseDeezerUrl, isShortUrl, resolveShortUrl } = utils;
   describe("changeImageSize", () => {
     it("should change the image size in a Deezer URL", () => {
       const original = "https://e-cdns-images.dzcdn.net/images/cover/123/250x250-000000-80-0-0.jpg";

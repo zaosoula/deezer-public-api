@@ -1,21 +1,10 @@
 import { describe, it, expect } from "vitest";
-import { getVersion, version } from "../src/version.js";
+import { DeezerPublicApi } from "@lib";
 
 describe("Version", () => {
-  it("should have a valid version from environment", () => {
-    expect(version).toBeDefined();
+  it("should have a valid version on the class", () => {
+    expect(DeezerPublicApi.VERSION).toBeDefined();
     // In Vitest environment, it should match the pkg.version
-    expect(version).not.toBe("0.0.0-dev");
-  });
-
-  describe("getVersion helper", () => {
-    it("should return the provided version", () => {
-      expect(getVersion("1.2.3")).toBe("1.2.3");
-    });
-
-    it("should return fallback if no version provided", () => {
-      expect(getVersion(undefined)).toBe("0.0.0-dev");
-      expect(getVersion("")).toBe("0.0.0-dev");
-    });
+    expect(DeezerPublicApi.VERSION).not.toBe("0.0.0-dev");
   });
 });

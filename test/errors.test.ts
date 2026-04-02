@@ -4,7 +4,7 @@ import {
   DeezerResponseError,
   DeezerRateLimitError,
   DeezerNotFoundError,
-} from "../src/errors.js";
+} from "@lib";
 
 describe("Custom Errors", () => {
   it("DeezerError should be an instance of Error", () => {
