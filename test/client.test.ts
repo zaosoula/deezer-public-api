@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { DeezerClient } from "../src/client.js";
+import { version } from "../src/version.js";
 import {
   DeezerError,
   DeezerResponseError,
@@ -50,7 +51,7 @@ describe("DeezerClient", () => {
     await customClient.request("test");
     const headers = vi.mocked(fetch).mock.calls[0][1]?.headers as any;
     expect(headers["User-Agent"]).toContain("MyAwesomeBot/1.0");
-    expect(headers["User-Agent"]).toContain("deezer-public-api/2.0.0");
+    expect(headers["User-Agent"]).toContain(`deezer-public-api/${version}`);
   });
 
   it("should support custom fetch injection", async () => {

@@ -53,16 +53,16 @@
     "update-fixtures": "tsx scripts/generate-fixtures.ts"
   },
   "devDependencies": {
-    "@types/node": "^20.11.0",
-    "@vitest/coverage-v8": "^4.0.18",
+    "@types/node": "^25.5.0",
+    "@vitest/coverage-v8": "^4.1.2",
     "changelogen": "^0.6.2",
     "make-coverage-badge": "^1.2.0",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.2",
-    "type-fest": "^5.4.4",
-    "typescript": "^5.3.3",
+    "type-fest": "^5.5.0",
+    "typescript": "^6.0.2",
     "unbuild": "^3.0.0",
-    "vitest": "^4.0.18"
+    "vitest": "^4.1.2"
   },
   "engines": {
     "node": ">=18"
