@@ -2,105 +2,36 @@
 
 All notable changes to this project will be documented in this file.
 
-## v2.1.2
+## [2.1.2] - Modernization Era (2026-04-02)
 
-[compare changes](https://github.com/zaosoula/deezer-public-api/compare/v2.1.1...v2.1.2)
+This version represents a complete ground-up rewrite of the library to provide a modern, type-safe, and high-performance experience.
 
-### 💅 Refactors
+### ⚠️ BREAKING CHANGES
 
-- Prefix all public types with Deezer ([101bf1e](https://github.com/zaosoula/deezer-public-api/commit/101bf1e))
-- Apply Deezer prefix across all modules and core ([21c6ba8](https://github.com/zaosoula/deezer-public-api/commit/21c6ba8))
+- **Namespace Safety**: All public-facing interfaces and types are now prefixed with `Deezer` to prevent naming collisions (e.g., `Album` → `DeezerAlbum`, `Track` → `DeezerTrack`).
+- **Search Builder Rename**: The `SearchBuilder` class has been renamed to `DeezerSearchBuilder`.
+- **API Entry Point**: The `DeezerClient` class is no longer directly exported for instantiation; use the `DeezerPublicApi` class instead. `DeezerClient` is now exported as a Type only.
+- **Arguments Refactor**: All methods have been migrated from positional arguments to a single options object (e.g., `api.album({ id: '123' })`).
+- **ESM Conversion**: The library is now ESM-first, utilizing native `fetch` and modern JavaScript features.
 
-### 🏡 Chore
+### 🚀 Features & Enhancements
 
-- Use correct command to create github release ([cd045fd](https://github.com/zaosoula/deezer-public-api/commit/cd045fd))
-- Optimize build and release workflow ([1ea8515](https://github.com/zaosoula/deezer-public-api/commit/1ea8515))
+- **TypeScript Engine**: Full TypeScript rewrite for 100% type safety and excellent developer experience (IntelliSense).
+- **Native Fetch (Node 18+)**: Replaced `axios` and other HTTP dependencies with native `fetch` support.
+- **Smart Pagination**: Introduced `.next()` and `.prev()` methods on paginated responses for effortless navigation.
+- **Fluent Search Builder**: A powerful, chainable API for building complex search queries via `api.search.builder()`.
+- **Custom Fetch Injection**: Support for custom `fetch` implementations, allowing for proxies, logging, or specialized headers.
+- **Image Utilities**: Added `deezer.utils.changeImageSize()` for dynamic entity image resizing.
+- **Version Awareness**: Static `VERSION` property on the main class and automated User-Agent reporting.
 
-### ✅ Tests
+### 💅 Development & Infrastructure
 
-- Standardize all imports to use @lib alias ([2be60af](https://github.com/zaosoula/deezer-public-api/commit/2be60af))
-- Refactor client tests to use DeezerPublicApi ([64f79ed](https://github.com/zaosoula/deezer-public-api/commit/64f79ed))
-
-### ❤️ Contributors
-
-- Zao Soula ([@zaosoula](https://github.com/zaosoula))
-
-## v2.1.1
-
-[compare changes](https://github.com/zaosoula/deezer-public-api/compare/v2.1.0...v2.1.1)
-
-### 🏡 Chore
-
-- Upgrade actions nodejs version ([b0f5ce5](https://github.com/zaosoula/deezer-public-api/commit/b0f5ce5))
-- Upgrade all dev-deps ([8bccfe0](https://github.com/zaosoula/deezer-public-api/commit/8bccfe0))
-- Install deps with --legacy-peer-deps ([fa75be3](https://github.com/zaosoula/deezer-public-api/commit/fa75be3))
-
-### ❤️ Contributors
-
-- Zao Soula ([@zaosoula](https://github.com/zaosoula))
-
-## v2.1.0
-
-[compare changes](https://github.com/zaosoula/deezer-public-api/compare/v2.0.0...v2.1.0)
-
-### 🚀 Enhancements
-
-- **search:** Add supports for index and limit parameters ([834911d](https://github.com/zaosoula/deezer-public-api/commit/834911d))
-- **resolve:** Add supports for short-urls ([81371e2](https://github.com/zaosoula/deezer-public-api/commit/81371e2))
-- Implement version helper and update vitest configuration to inject package version via environment variables ([49a024b](https://github.com/zaosoula/deezer-public-api/commit/49a024b))
+- **Modern Build System**: Powered by `unbuild` for standard, optimized ESM/CJS distribution.
+- **Testing Standard**: Entire test suite (160+ tests) standardized to verify both source and distribution bundles using Vitest.
+- **Clean Architecture**: Refactored internal modules into a maintainable, extensible structure.
 
 ### 🩹 Fixes
 
-- Pass 0 value parameters into request ([e9fd84c](https://github.com/zaosoula/deezer-public-api/commit/e9fd84c))
-
-### 💅 Refactors
-
-- Inject version at build time ([4d5c643](https://github.com/zaosoula/deezer-public-api/commit/4d5c643))
-
-### 🏡 Chore
-
-- Unify release workflows and add manual trigger support ([c90135a](https://github.com/zaosoula/deezer-public-api/commit/c90135a))
-- Configure Dependabot ([bed0d2c](https://github.com/zaosoula/deezer-public-api/commit/bed0d2c))
-- Bump the all-actions group across 1 directory with 4 updates ([#15](https://github.com/zaosoula/deezer-public-api/pull/15))
-- Configure git user identity for release workflow ([bf66f10](https://github.com/zaosoula/deezer-public-api/commit/bf66f10))
-
-### ❤️ Contributors
-
-- Zao Soula ([@zaosoula](https://github.com/zaosoula))
-
-## [2.0.0](https://github.com/zaosoula/deezer-public-api/compare/v1.0.5...v2.0.0) (2026-04-01)
-
-
-### ⚠ BREAKING CHANGES
-
-* finalize v2.0.0 migration
-
-### Features
-
-* finalize v2.0.0 migration ([b3bbca9](https://github.com/zaosoula/deezer-public-api/commit/b3bbca9e717fc5855fd813628b3900f103afe044))
-
-## [2.0.0] - 2026-04-01
-
-### Added
-- Complete **TypeScript rewrite** from the ground up for full type safety.
-- Native `fetch` support (Node 18+), eliminating the need for heavy HTTP dependencies.
-- **Object-based Arguments**: All methods now use named objects (e.g., `deezer.track({ id })`), providing better ergonomics and future-proofing.
-- **Custom Fetch Injection**: Developers can now provide their own `fetch` implementation (useful for proxies or custom headers).
-- **Image Resizing Utility**: `deezer.utils.changeImageSize()` to dynamically resize Deezer entity images.
-- **Automated Reputation Tracking**: Standardized `User-Agent` prefix to help Deezer identify library versions and mitigate bad actors.
-- **User Module**: Access public user profiles, playlists, and flow.
-- **Search Module**: Expanded search with a fluent `SearchBuilder` and specialized methods.
-- **Docus Documentation**: New high-performance documentation website with automatic schema sync.
-- 100% test coverage for all core logic.
-
-### Changed
-- **Breaking**: Migrated all API signatures to accept a single options object instead of positional arguments.
-- **Breaking**: Migrated from CommonJS to ESM-first dual build.
-- **Breaking**: Renamed main class to `DeezerPublicApi`.
-- Rate limiting now handles Deezer's 50 requests / 5 seconds rule using an internal queue.
-- Unified response wrapping for consistent pagination across all modules.
-
-### Fixed
-- Improved error handling with specialized `DeezerError`, `DeezerResponseError`, and `DeezerRateLimitError` classes.
-- Corrected pagination logic for nested endpoints (e.g., `album.tracks`).
-- Fixed missing metadata fields in several entity interfaces.
+- Fixed serialization of numeric parameters (e.g., ensuring `dur_min: 0` is correctly sent to the API).
+- Standardized error handling with specialized `DeezerError`, `DeezerResponseError`, and `DeezerRateLimitError`.
+- Improved rate limit handling with an internal queue to respect Deezer's 50 requests / 5 seconds threshold.
