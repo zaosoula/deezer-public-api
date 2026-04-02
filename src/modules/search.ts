@@ -24,11 +24,15 @@ export function createSearchModule(client: DeezerClient) {
     let finalQuery: string;
     let finalOrder = order;
     let finalStrict = strict;
+    let finalLimit = limit;
+    let finalIndex = index;
 
     if (q instanceof SearchBuilder) {
       finalQuery = q.build();
       finalOrder = q.getOrder() || order;
       finalStrict = q.getStrictMode() || strict;
+      finalLimit = q.getLimit() || limit;
+      finalIndex = q.getIndex() || index;
     } else {
       finalQuery = q;
     }
@@ -36,8 +40,8 @@ export function createSearchModule(client: DeezerClient) {
     return client.request<PaginationResult<T>>(endpoint, {
       q: finalQuery,
       order: finalOrder,
-      limit,
-      index,
+      limit: finalLimit,
+      index: finalIndex,
       strict: finalStrict,
     });
   };

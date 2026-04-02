@@ -15,6 +15,8 @@ export class SearchBuilder {
   private query: string = "";
   private strictMode?: boolean;
   private orderValue?: SearchOrder;
+  private limitValue?: number;
+  private indexValue?: number;
 
   /**
    * Create a new SearchBuilder.
@@ -103,6 +105,22 @@ export class SearchBuilder {
     this.orderValue = value;
     return this;
   }
+  
+  /**
+   * Set the number of results to return.
+   */
+  limit(value: number): this {
+    this.limitValue = value;
+    return this;
+  }
+  
+  /**
+   * Set the index for pagination.
+   */
+  index(value: number): this {
+    this.indexValue = value;
+    return this;
+  }
 
   /**
    * Get the strict mode status.
@@ -116,6 +134,20 @@ export class SearchBuilder {
    */
   getOrder(): SearchOrder | undefined {
     return this.orderValue;
+  }
+
+  /**
+   * Get the limit value.
+   */
+  getLimit(): number | undefined {
+    return this.limitValue;
+  }
+
+  /**
+   * Get the index value.
+   */
+  getIndex(): number | undefined {
+    return this.indexValue;
   }
 
   /**

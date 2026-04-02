@@ -64,6 +64,21 @@ describe("SearchBuilder", () => {
     expect(builder.getOrder()).toBe("RANKING");
   });
 
+  it("should set the limit", () => {
+    const builder = new SearchBuilder().limit(50);
+    expect(builder.getLimit()).toBe(50);
+  });
+
+  it("should set the index", () => {
+    const builder = new SearchBuilder().index(100);
+    expect(builder.getIndex()).toBe(100);
+  });
+
+  it("should not include limit/index in the built query string", () => {
+    const builder = new SearchBuilder("daft punk").limit(10).index(20);
+    expect(builder.build()).toBe("daft punk");
+  });
+
   it("should have toString() alias for build()", () => {
     const builder = new SearchBuilder("test").album("Discovery");
     expect(String(builder)).toBe('test album:"Discovery"');

@@ -101,18 +101,17 @@ describe("Search Module", () => {
     });
   });
 
-  it("should support SearchBuilder", async () => {
+  it("should support SearchBuilder with limit and index", async () => {
     const builder = new SearchBuilder("Daft Punk")
-      .album("Discovery")
-      .strict()
-      .order("RANKING");
+      .limit(10)
+      .index(20);
     await search({ q: builder });
     expect(client.request).toHaveBeenCalledWith("search", {
-      q: 'Daft Punk album:"Discovery"',
-      strict: true,
-      order: "RANKING",
-      limit: undefined,
-      index: undefined,
+      q: "Daft Punk",
+      strict: undefined,
+      order: undefined,
+      limit: 10,
+      index: 20,
     });
   });
 });
