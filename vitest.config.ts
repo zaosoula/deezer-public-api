@@ -1,4 +1,7 @@
 import { defineConfig } from "vitest/config";
+import { readFileSync } from "node:fs";
+
+const pkg = JSON.parse(readFileSync("./package.json", "utf-8"));
 
 export default defineConfig({
   test: {
@@ -14,5 +17,8 @@ export default defineConfig({
     typecheck: {
       include: ["**/*.test-d.ts"],
     },
+  },
+  define: {
+    "process.env.PKG_VERSION": JSON.stringify(pkg.version),
   },
 });

@@ -3,6 +3,7 @@ import {
   DeezerResponseError,
   DeezerRateLimitError,
 } from "./errors.js";
+import { version } from "./version.js";
 
 import { PaginationResult } from "./types/index.js";
 
@@ -49,8 +50,7 @@ export class DeezerClient {
     this.debug = options.debug || false;
     this.customFetch = options.fetch || globalThis.fetch;
 
-    const libId =
-      "deezer-public-api/2.0.0 (https://github.com/zaosoula/deezer-public-api)";
+    const libId = `deezer-public-api/${version} (https://github.com/zaosoula/deezer-public-api)`;
     this.userAgent = options.userAgent
       ? `${options.userAgent} via ${libId}`
       : libId;
