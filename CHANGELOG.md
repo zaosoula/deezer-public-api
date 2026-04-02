@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file.
 
+## v2.1.0
+
+[compare changes](https://github.com/zaosoula/deezer-public-api/compare/v2.0.0...v2.1.0)
+
+### 🚀 Enhancements
+
+- **search:** Add supports for index and limit parameters ([834911d](https://github.com/zaosoula/deezer-public-api/commit/834911d))
+- **resolve:** Add supports for short-urls ([81371e2](https://github.com/zaosoula/deezer-public-api/commit/81371e2))
+- Implement version helper and update vitest configuration to inject package version via environment variables ([49a024b](https://github.com/zaosoula/deezer-public-api/commit/49a024b))
+
+### 🩹 Fixes
+
+- Pass 0 value parameters into request ([e9fd84c](https://github.com/zaosoula/deezer-public-api/commit/e9fd84c))
+
+### 💅 Refactors
+
+- Inject version at build time ([4d5c643](https://github.com/zaosoula/deezer-public-api/commit/4d5c643))
+
+### 🏡 Chore
+
+- Unify release workflows and add manual trigger support ([c90135a](https://github.com/zaosoula/deezer-public-api/commit/c90135a))
+- Configure Dependabot ([bed0d2c](https://github.com/zaosoula/deezer-public-api/commit/bed0d2c))
+- Bump the all-actions group across 1 directory with 4 updates ([#15](https://github.com/zaosoula/deezer-public-api/pull/15))
+- Configure git user identity for release workflow ([bf66f10](https://github.com/zaosoula/deezer-public-api/commit/bf66f10))
+
+### ❤️ Contributors
+
+- Zao Soula ([@zaosoula](https://github.com/zaosoula))
+
 ## [2.0.0](https://github.com/zaosoula/deezer-public-api/compare/v1.0.5...v2.0.0) (2026-04-01)
 
 
