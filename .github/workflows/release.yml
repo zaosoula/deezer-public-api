@@ -203,8 +203,6 @@ jobs:
         run: npm install --legacy-peer-deps
       - name: Create GitHub Release
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          npx changelogen --github
+          npx changelogen gh release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
