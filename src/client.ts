@@ -79,7 +79,7 @@ export class DeezerClient {
     );
 
     for (const [key, value] of Object.entries(params)) {
-      if (value !== undefined && value !== null && value !== 0 && key !== "q") {
+      if (value !== undefined && value !== null && key !== "q") {
         if (key === "strict" && value === true) {
           url.searchParams.append("strict", "on");
         } else {

@@ -180,7 +180,7 @@ describe("DeezerClient", () => {
     expect(url.searchParams.get("artist")).toBe("Daft Punk");
     expect(url.searchParams.get("dur_min")).toBe("180");
     expect(url.searchParams.get("strict")).toBe("on");
-    expect(url.searchParams.has("zeroValue")).toBe(false);
+    expect(url.searchParams.get("zeroValue")).toBe("0");
   });
 
   it("should respect rate limiting (throttling)", async () => {
