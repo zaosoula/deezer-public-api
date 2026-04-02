@@ -5,17 +5,17 @@ export interface DeezerResponse<T> {
   prev?: string;
 }
 
-export interface PaginationResult<T> {
+export interface DeezerPaginationResult<T> {
   data: T[];
   total?: number;
-  next?: () => Promise<PaginationResult<T>>;
-  prev?: () => Promise<PaginationResult<T>>;
+  next?: () => Promise<DeezerPaginationResult<T>>;
+  prev?: () => Promise<DeezerPaginationResult<T>>;
 }
 
 /**
  * Shared options for methods that support pagination.
  */
-export interface ListOptions {
+export interface DeezerListOptions {
   limit?: number;
   index?: number;
 }
@@ -23,28 +23,28 @@ export interface ListOptions {
 /**
  * Common structure for methods requiring an ID and optional pagination.
  */
-export interface IdOptions extends ListOptions {
+export interface DeezerIdOptions extends DeezerListOptions {
   id: number | string;
 }
 
 /**
  * Options for ISRC lookup.
  */
-export interface IsrcOptions extends ListOptions {
+export interface DeezerIsrcOptions extends DeezerListOptions {
   isrc: string;
 }
 
 /**
  * Options for UPC lookup.
  */
-export interface UpcOptions extends ListOptions {
+export interface DeezerUpcOptions extends DeezerListOptions {
   upc: string;
 }
 
 /**
  * Options for editorial selection.
  */
-export interface EditorialSelectionOptions extends IdOptions {
+export interface DeezerEditorialSelectionOptions extends DeezerIdOptions {
   date?: string;
 }
 
@@ -56,15 +56,15 @@ export interface DeezerApiError {
   };
 }
 
-export interface Chart {
-  tracks: DeezerResponse<Track>;
-  albums: DeezerResponse<Album>;
-  artists: DeezerResponse<Artist>;
-  playlists: DeezerResponse<Playlist>;
-  podcasts: DeezerResponse<Podcast>;
+export interface DeezerChart {
+  tracks: DeezerResponse<DeezerTrack>;
+  albums: DeezerResponse<DeezerAlbum>;
+  artists: DeezerResponse<DeezerArtist>;
+  playlists: DeezerResponse<DeezerPlaylist>;
+  podcasts: DeezerResponse<DeezerPodcast>;
 }
 
-export interface Artist {
+export interface DeezerArtist {
   id: number;
   name: string;
   link: string;
@@ -81,7 +81,7 @@ export interface Artist {
   type: "artist";
 }
 
-export interface Album {
+export interface DeezerAlbum {
   id: number;
   title: string;
   upc?: string;
@@ -94,7 +94,7 @@ export interface Album {
   cover_xl: string;
   genre_id?: number;
   genres?: {
-    data: Genre[];
+    data: DeezerGenre[];
   };
   label?: string;
   nb_tracks?: number;
@@ -108,13 +108,13 @@ export interface Album {
   explicit_content_lyrics?: number;
   explicit_content_display?: number;
   type: "album";
-  artist?: Artist;
+  artist?: DeezerArtist;
   tracks?: {
-    data: Track[];
+    data: DeezerTrack[];
   };
 }
 
-export interface Track {
+export interface DeezerTrack {
   id: number;
   readable: boolean;
   title: string;
@@ -135,14 +135,14 @@ export interface Track {
   bpm?: number;
   gain?: number;
   available_countries?: string[];
-  contributors?: Artist[];
+  contributors?: DeezerArtist[];
   md5_image: string;
-  artist: Artist;
-  album?: Album;
+  artist: DeezerArtist;
+  album?: DeezerAlbum;
   type: "track";
 }
 
-export interface Playlist {
+export interface DeezerPlaylist {
   id: number;
   title: string;
   description: string;
@@ -169,11 +169,11 @@ export interface Playlist {
   };
   type: "playlist";
   tracks?: {
-    data: Track[];
+    data: DeezerTrack[];
   };
 }
 
-export interface Genre {
+export interface DeezerGenre {
   id: number;
   name: string;
   picture: string;
@@ -184,7 +184,7 @@ export interface Genre {
   type: "genre";
 }
 
-export interface Comment {
+export interface DeezerComment {
   id: number;
   text: string;
   date: number;
@@ -202,7 +202,7 @@ export interface Comment {
   type: "comment";
 }
 
-export interface User {
+export interface DeezerUser {
   id: number;
   name: string;
   link: string;
@@ -216,13 +216,13 @@ export interface User {
   type: "user";
 }
 
-export interface Editorial {
+export interface DeezerEditorial {
   id: number;
   name: string;
   type: "editorial";
 }
 
-export interface Episode {
+export interface DeezerEpisode {
   id: number;
   title: string;
   description: string;
@@ -239,7 +239,7 @@ export interface Episode {
   type: "episode";
 }
 
-export interface Podcast {
+export interface DeezerPodcast {
   id: number;
   title: string;
   description: string;
@@ -255,7 +255,7 @@ export interface Podcast {
   type: "podcast";
 }
 
-export interface Radio {
+export interface DeezerRadio {
   id: number;
   title: string;
   picture: string;
@@ -267,7 +267,7 @@ export interface Radio {
   type: "radio";
 }
 
-export interface SearchOptions {
+export interface DeezerSearchOptions {
   artist?: string;
   album?: string;
   track?: string;
@@ -278,7 +278,7 @@ export interface SearchOptions {
   bpm_max?: number;
 }
 
-export type SearchOrder =
+export type DeezerSearchOrder =
   | "RANKING"
   | "TRACK_ASC"
   | "TRACK_DESC"
@@ -294,13 +294,13 @@ export type SearchOrder =
 /**
  * Options for search requests.
  */
-export interface SearchRequestOptions extends ListOptions {
-  q: string | import("../search-builder.js").SearchBuilder;
-  order?: SearchOrder;
+export interface DeezerSearchRequestOptions extends DeezerListOptions {
+  q: string | import("../search-builder.js").DeezerSearchBuilder;
+  order?: DeezerSearchOrder;
   strict?: boolean;
 }
 
-export interface Infos {
+export interface DeezerInfos {
   country_iso: string;
   country: string;
   open: boolean;
@@ -333,7 +333,7 @@ export interface Infos {
   offers: any[];
 }
 
-export interface Options {
+export interface DeezerOptions {
   streaming: boolean;
   streaming_duration: number;
   offline: boolean;
