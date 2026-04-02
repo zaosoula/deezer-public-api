@@ -140,4 +140,10 @@ export class DeezerClient {
 
     return result;
   }
+  /**
+   * Internal helper to get the fetch implementation.
+   */
+  public getFetch(): typeof fetch {
+    return this.customFetch;
+  }
 }

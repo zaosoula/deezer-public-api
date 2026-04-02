@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
-import { changeImageSize, parseDeezerUrl } from "../../src/utils/index.js";
+import { describe, it, expect, vi } from "vitest";
+import { changeImageSize, parseDeezerUrl, isShortUrl, resolveShortUrl } from "../../src/utils/index.js";
 
 describe("Utils", () => {
   describe("changeImageSize", () => {
@@ -30,6 +30,16 @@ describe("Utils", () => {
       expect(parseDeezerUrl(url)).toEqual({ type: "album", id: "302127" });
     });
 
+    it("should parse URLs with 'us' locale", () => {
+      const url = "https://www.deezer.com/us/album/302127";
+      expect(parseDeezerUrl(url)).toEqual({ type: "album", id: "302127" });
+    });
+
+    it("should parse URLs with multi-part language codes", () => {
+      const url = "https://www.deezer.com/en-US/track/3135556";
+      expect(parseDeezerUrl(url)).toEqual({ type: "track", id: "3135556" });
+    });
+
     it("should parse artist URLs", () => {
       const url = "https://www.deezer.com/en/artist/27";
       expect(parseDeezerUrl(url)).toEqual({ type: "artist", id: "27" });
@@ -43,6 +53,43 @@ describe("Utils", () => {
 
     it("should handle empty or null input", () => {
       expect(parseDeezerUrl("")).toBeNull();
+    });
+
+    it("should return null for non-Deezer hostnames", () => {
+      expect(parseDeezerUrl("https://example.com/track/123")).toBeNull();
+    });
+  });
+
+  describe("isShortUrl", () => {
+    it("should return true for link.deezer.com", () => {
+      expect(isShortUrl("https://link.deezer.com/s/123")).toBe(true);
+    });
+
+    it("should return true for deezer.page.link", () => {
+      expect(isShortUrl("https://deezer.page.link/abc")).toBe(true);
+    });
+
+    it("should return false for regular deezer.com", () => {
+      expect(isShortUrl("https://www.deezer.com/track/123")).toBe(false);
+    });
+
+    it("should return false for invalid URLs", () => {
+      expect(isShortUrl("not-a-url")).toBe(false);
+      expect(isShortUrl("")).toBe(false);
+    });
+  });
+
+  describe("resolveShortUrl", () => {
+    it("should follow redirects and return final URL", async () => {
+      const mockFetch = vi.fn().mockResolvedValue({
+        url: "https://www.deezer.com/track/123",
+      });
+      const finalUrl = await resolveShortUrl("https://link.deezer.com/s/123", mockFetch as any);
+      expect(finalUrl).toBe("https://www.deezer.com/track/123");
+      expect(mockFetch).toHaveBeenCalledWith("https://link.deezer.com/s/123", {
+        method: "GET",
+        redirect: "follow",
+      });
     });
   });
 });

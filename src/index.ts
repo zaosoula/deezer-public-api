@@ -66,9 +66,14 @@ export class DeezerPublicApi {
    * @returns The resolved data, or throws if the URL is invalid or not found.
    */
   public async resolve(url: string): Promise<any> {
-    const parsed = utils.parseDeezerUrl(url);
+    let targetUrl = url;
+    if (utils.isShortUrl(url)) {
+      targetUrl = await utils.resolveShortUrl(url, this.client.getFetch());
+    }
+
+    const parsed = utils.parseDeezerUrl(targetUrl);
     if (!parsed) {
-      throw new Error(`Invalid Deezer URL: ${url}`);
+      throw new Error(`Invalid Deezer URL: ${targetUrl}`);
     }
 
     const { type, id } = parsed;

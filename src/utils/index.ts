@@ -34,20 +34,20 @@ export function parseDeezerUrl(url: string): ParsedDeezerUrl | null {
 
   try {
     const parsed = new URL(url);
+    if (!parsed.hostname.includes("deezer.com")) return null;
     
     // Handle standard URLs: deezer.com/{language}/{type}/{id} or deezer.com/{type}/{id}
     const pathParts = parsed.pathname.split("/").filter(Boolean);
-    
-    // If first part is a language code (2 chars), skip it
+    const validTypes = ["track", "album", "artist", "playlist", "podcast", "episode", "radio", "user"];
+
+    // If first part is not a valid type, it's likely a language code, skip it
     let typeIndex = 0;
-    if (pathParts[0]?.length === 2 && pathParts[0] !== "us") {
+    if (pathParts[0] && !validTypes.includes(pathParts[0])) {
       typeIndex = 1;
     }
 
     const type = pathParts[typeIndex];
     const id = pathParts[typeIndex + 1];
-
-    const validTypes = ["track", "album", "artist", "playlist", "podcast", "episode", "radio", "user"];
     
     if (type && id && validTypes.includes(type)) {
       return { type: type as any, id };
@@ -57,4 +57,37 @@ export function parseDeezerUrl(url: string): ParsedDeezerUrl | null {
   } catch {
     return null;
   }
+}
+
+/**
+ * Checks if a URL is a known Deezer short/share link.
+ * 
+ * @param url The URL to check.
+ * @returns True if the URL is a short link.
+ */
+export function isShortUrl(url: string): boolean {
+  if (!url) return false;
+  try {
+    const parsed = new URL(url);
+    const shortDomains = ["link.deezer.com", "deezer.page.link"];
+    return shortDomains.includes(parsed.hostname);
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Resolves a short Deezer URL by following redirects.
+ * 
+ * @param url The short URL to resolve.
+ * @param fetchFn The fetch implementation to use.
+ * @returns The final destination URL.
+ */
+export async function resolveShortUrl(url: string, fetchFn: typeof fetch): Promise<string> {
+  // Use HEAD to follow redirects without downloading content
+  const response = await fetchFn(url, {
+    method: "GET", // Some redirectors might fail on HEAD
+    redirect: "follow",
+  });
+  return response.url;
 }
