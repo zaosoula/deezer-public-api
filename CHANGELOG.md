@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file.
 
+## v2.1.1
+
+[compare changes](https://github.com/zaosoula/deezer-public-api/compare/v2.1.0...v2.1.1)
+
+### 🏡 Chore
+
+- Upgrade actions nodejs version ([b0f5ce5](https://github.com/zaosoula/deezer-public-api/commit/b0f5ce5))
+- Upgrade all dev-deps ([8bccfe0](https://github.com/zaosoula/deezer-public-api/commit/8bccfe0))
+- Install deps with --legacy-peer-deps ([fa75be3](https://github.com/zaosoula/deezer-public-api/commit/fa75be3))
+
+### ❤️ Contributors
+
+- Zao Soula ([@zaosoula](https://github.com/zaosoula))
+
 ## v2.1.0
 
 [compare changes](https://github.com/zaosoula/deezer-public-api/compare/v2.0.0...v2.1.0)
