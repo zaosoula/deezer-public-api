@@ -48,6 +48,7 @@
     "dev": "unbuild --stub",
     "prepublishOnly": "node -e \"if(!process.env.GITHUB_ACTIONS) { console.error('\\n\\nERROR: Local publishing is disabled. Use GitHub Actions.\\n\\n'); process.exit(1); }\"",
     "test": "vitest run --coverage --typecheck",
+    "test:dist": "TEST_DIST=true vitest run",
     "test:watch": "vitest",
     "sync-docs": "tsx scripts/sync-docs.ts",
     "update-fixtures": "tsx scripts/generate-fixtures.ts"

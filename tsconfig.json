@@ -12,7 +12,10 @@
     "forceConsistentCasingInFileNames": true,
     "types": [
       "node"
-    ]
+    ],
+    "paths": {
+      "@lib": ["./src/index.ts"]
+    }
   },
   "include": [
     "src/**/*",
