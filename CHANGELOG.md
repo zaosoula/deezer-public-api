@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file.
 
+## v2.1.2
+
+[compare changes](https://github.com/zaosoula/deezer-public-api/compare/v2.1.1...v2.1.2)
+
+### 💅 Refactors
+
+- Prefix all public types with Deezer ([101bf1e](https://github.com/zaosoula/deezer-public-api/commit/101bf1e))
+- Apply Deezer prefix across all modules and core ([21c6ba8](https://github.com/zaosoula/deezer-public-api/commit/21c6ba8))
+
+### 🏡 Chore
+
+- Use correct command to create github release ([cd045fd](https://github.com/zaosoula/deezer-public-api/commit/cd045fd))
+- Optimize build and release workflow ([1ea8515](https://github.com/zaosoula/deezer-public-api/commit/1ea8515))
+
+### ✅ Tests
+
+- Standardize all imports to use @lib alias ([2be60af](https://github.com/zaosoula/deezer-public-api/commit/2be60af))
+- Refactor client tests to use DeezerPublicApi ([64f79ed](https://github.com/zaosoula/deezer-public-api/commit/64f79ed))
+
+### ❤️ Contributors
+
+- Zao Soula ([@zaosoula](https://github.com/zaosoula))
+
 ## v2.1.1
 
 [compare changes](https://github.com/zaosoula/deezer-public-api/compare/v2.1.0...v2.1.1)
