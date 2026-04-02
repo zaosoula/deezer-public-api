@@ -1,18 +1,17 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { DeezerClient } from "../src/client.js";
-import { version } from "../src/version.js";
 import {
   DeezerError,
   DeezerResponseError,
   DeezerRateLimitError,
-} from "../src/errors.js";
+  DeezerPublicApi
+} from "@lib";
 
 describe("DeezerClient", () => {
-  let client: DeezerClient;
+  let api: DeezerPublicApi;
 
   beforeEach(() => {
     vi.stubGlobal("fetch", vi.fn());
-    client = new DeezerClient();
+    api = new DeezerPublicApi();
   });
 
   it("should make a simple request", async () => {
@@ -22,36 +21,36 @@ describe("DeezerClient", () => {
     };
     vi.mocked(fetch).mockResolvedValue(mockResponse as Response);
 
-    const response = await client.request("test");
+    const response = await api.client.request("test");
     expect(response).toEqual({ data: [] });
     expect(fetch).toHaveBeenCalledWith("https://api.deezer.com/test", expect.any(Object));
   });
 
   it("should log requests in debug mode", async () => {
-    const debugClient = new DeezerClient({ debug: true });
-    const logSpy = vi.spyOn(console, "log").mockImplementation(() => {});
-    
+    const debugApi = new DeezerPublicApi({ debug: true });
+    const logSpy = vi.spyOn(console, "log").mockImplementation(() => { });
+
     vi.mocked(fetch).mockResolvedValue({
       ok: true,
       json: () => Promise.resolve({ data: [] }),
     } as Response);
 
-    await debugClient.request("debug-test");
+    await debugApi.client.request("debug-test");
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("[DeezerPublicApi] Request:"));
     logSpy.mockRestore();
   });
 
   it("should support custom User-Agent", async () => {
-    const customClient = new DeezerClient({ userAgent: "MyAwesomeBot/1.0" });
+    const customApi = new DeezerPublicApi({ userAgent: "MyAwesomeBot/1.0" });
     vi.mocked(fetch).mockResolvedValue({
       ok: true,
       json: () => Promise.resolve({ data: [] }),
     } as Response);
 
-    await customClient.request("test");
+    await customApi.client.request("test");
     const headers = vi.mocked(fetch).mock.calls[0][1]?.headers as any;
     expect(headers["User-Agent"]).toContain("MyAwesomeBot/1.0");
-    expect(headers["User-Agent"]).toContain(`deezer-public-api/${version}`);
+    expect(headers["User-Agent"]).toContain(`deezer-public-api/${DeezerPublicApi.VERSION}`);
   });
 
   it("should support custom fetch injection", async () => {
@@ -59,9 +58,9 @@ describe("DeezerClient", () => {
       ok: true,
       json: () => Promise.resolve({ data: ["custom"] }),
     } as Response);
-    const clientWithFetch = new DeezerClient({ fetch: customFetch as any });
+    const apiWithFetch = new DeezerPublicApi({ fetch: customFetch as any });
 
-    const response = await clientWithFetch.request("test");
+    const response = await apiWithFetch.client.request("test");
     expect(response).toEqual({ data: ["custom"] });
     expect(customFetch).toHaveBeenCalled();
   });
@@ -80,7 +79,7 @@ describe("DeezerClient", () => {
     };
     vi.mocked(fetch).mockResolvedValue(mockResponse as Response);
 
-    await expect(client.request("test")).rejects.toThrow(DeezerRateLimitError);
+    await expect(api.client.request("test")).rejects.toThrow(DeezerRateLimitError);
   });
 
   it("should handle general API errors", async () => {
@@ -93,7 +92,7 @@ describe("DeezerClient", () => {
     };
     vi.mocked(fetch).mockResolvedValue(mockResponse as Response);
 
-    await expect(client.request("test")).rejects.toThrow(DeezerResponseError);
+    await expect(api.client.request("test")).rejects.toThrow(DeezerResponseError);
   });
 
   it("should handle HTTP errors", async () => {
@@ -104,7 +103,7 @@ describe("DeezerClient", () => {
     };
     vi.mocked(fetch).mockResolvedValue(mockResponse as Response);
 
-    await expect(client.request("test")).rejects.toThrow(DeezerError);
+    await expect(api.client.request("test")).rejects.toThrow(DeezerError);
   });
 
   it("should handle pagination wrapping", async () => {
@@ -118,7 +117,7 @@ describe("DeezerClient", () => {
     };
     vi.mocked(fetch).mockResolvedValue(mockResponse as Response);
 
-    const response = await client.request<any>("test");
+    const response = await api.client.request<any>("test");
     expect(response.next).toBeDefined();
 
     // Test that .next() triggers another request
@@ -146,7 +145,7 @@ describe("DeezerClient", () => {
     };
     vi.mocked(fetch).mockResolvedValue(mockResponse as Response);
 
-    const response = await client.request<any>("test");
+    const response = await api.client.request<any>("test");
     expect(response.prev).toBeDefined();
 
     const prevMockResponse = {
@@ -169,7 +168,7 @@ describe("DeezerClient", () => {
     };
     vi.mocked(fetch).mockResolvedValue(mockResponse as Response);
 
-    await client.request("test", {
+    await api.client.request("test", {
       artist: "Daft Punk",
       dur_min: 180,
       strict: true,
@@ -194,10 +193,10 @@ describe("DeezerClient", () => {
 
     // Fill the window
     for (let i = 0; i < 50; i++) {
-      await client.request("test");
+      await api.client.request("test");
     }
 
-    const delayedRequest = client.request("delayed");
+    const delayedRequest = api.client.request("delayed");
 
     let finished = false;
     delayedRequest.then(() => {
