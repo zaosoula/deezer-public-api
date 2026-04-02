@@ -60,6 +60,9 @@ jobs:
         with:
           commit_message: "docs(coverage): auto-update coverage badge [skip ci]"
           file_pattern: "badges/coverage.svg"
+          commit_user_name: github-actions[bot]
+          commit_user_email: github-actions[bot]@users.noreply.github.com
+          commit_author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
 
   changelogen:
     needs: test-and-badge
@@ -84,6 +87,8 @@ jobs:
       - name: Bump Version and Push
         id: bump
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           OLD_VERSION=$(node -p "require('./package.json').version")
           
           # Determine bump flag from input
@@ -198,6 +203,9 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Create GitHub Release
-        run: npx changelogen --github
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          npx changelogen --github
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
