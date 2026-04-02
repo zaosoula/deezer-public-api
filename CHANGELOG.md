@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## v2.1.3
+
+[compare changes](https://github.com/zaosoula/deezer-public-api/compare/v2.1.2...v2.1.3)
+
+### 📖 Documentation
+
+- Unify v2.x.x changelog and bump version to 2.1.2 ([988f384](https://github.com/zaosoula/deezer-public-api/commit/988f384))
+
+### ❤️ Contributors
+
+- Zao Soula ([@zaosoula](https://github.com/zaosoula))
+
 ## [2.1.2] - Modernization Era (2026-04-02)
 
 This version represents a complete ground-up rewrite of the library to provide a modern, type-safe, and high-performance experience.
