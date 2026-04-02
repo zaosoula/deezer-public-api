@@ -17,8 +17,8 @@ export default defineConfig({
     typecheck: {
       include: ["**/*.test-d.ts"],
     },
-  },
-  define: {
-    "process.env.PKG_VERSION": JSON.stringify(pkg.version),
+    env: {
+      PKG_VERSION: pkg.version,
+    },
   },
 });
