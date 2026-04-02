@@ -1,12 +1,12 @@
 import { DeezerClient } from "../client.js";
 import {
-  Album,
-  PaginationResult,
-  Track,
-  Artist,
-  Comment,
-  IdOptions,
-  UpcOptions,
+  DeezerAlbum,
+  DeezerPaginationResult,
+  DeezerTrack,
+  DeezerArtist,
+  DeezerComment,
+  DeezerIdOptions,
+  DeezerUpcOptions,
 } from "../types/index.js";
 
 /**
@@ -17,41 +17,41 @@ export function createAlbumModule(client: DeezerClient) {
   /**
    * Get an album's data.
    */
-  const album = async (options: IdOptions) => {
+  const album = async (options: DeezerIdOptions) => {
     const { id, ...params } = options;
-    return client.request<Album>(`album/${id}`, params);
+    return client.request<DeezerAlbum>(`album/${id}`, params);
   };
 
   /**
    * Get an album's comments.
    */
-  album.comments = async (options: IdOptions) => {
+  album.comments = async (options: DeezerIdOptions) => {
     const { id, ...params } = options;
-    return client.request<PaginationResult<Comment>>(`album/${id}/comments`, params);
+    return client.request<DeezerPaginationResult<DeezerComment>>(`album/${id}/comments`, params);
   };
 
   /**
    * Get an album's fans.
    */
-  album.fans = async (options: IdOptions) => {
+  album.fans = async (options: DeezerIdOptions) => {
     const { id, ...params } = options;
-    return client.request<PaginationResult<Artist>>(`album/${id}/fans`, params);
+    return client.request<DeezerPaginationResult<DeezerArtist>>(`album/${id}/fans`, params);
   };
 
   /**
    * Get an album's tracks.
    */
-  album.tracks = async (options: IdOptions) => {
+  album.tracks = async (options: DeezerIdOptions) => {
     const { id, ...params } = options;
-    return client.request<PaginationResult<Track>>(`album/${id}/tracks`, params);
+    return client.request<DeezerPaginationResult<DeezerTrack>>(`album/${id}/tracks`, params);
   };
 
   /**
    * Get an album's data by UPC.
    */
-  album.upc = async (options: UpcOptions) => {
+  album.upc = async (options: DeezerUpcOptions) => {
     const { upc, ...params } = options;
-    return client.request<Album>(`album/upc:${upc}`, params);
+    return client.request<DeezerAlbum>(`album/upc:${upc}`, params);
   };
 
   return album;

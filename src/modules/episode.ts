@@ -1,13 +1,13 @@
 import { DeezerClient } from "../client.js";
-import { Episode, IdOptions } from "../types/index.js";
+import { DeezerEpisode, DeezerIdOptions } from "../types/index.js";
 
 /**
  * Creates the Episode module.
  * @param client The base DeezerClient instance.
  */
 export function createEpisodeModule(client: DeezerClient) {
-  return async (options: IdOptions) => {
+  return async (options: DeezerIdOptions) => {
     const { id, ...params } = options;
-    return client.request<Episode>(`episode/${id}`, params);
+    return client.request<DeezerEpisode>(`episode/${id}`, params);
   };
 }

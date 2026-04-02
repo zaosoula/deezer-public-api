@@ -1,11 +1,11 @@
 import { DeezerClient } from "../client.js";
 import {
-  PaginationResult,
-  Genre,
-  Artist,
-  Podcast,
-  Radio,
-  IdOptions,
+  DeezerPaginationResult,
+  DeezerGenre,
+  DeezerArtist,
+  DeezerPodcast,
+  DeezerRadio,
+  DeezerIdOptions,
 } from "../types/index.js";
 
 /**
@@ -16,33 +16,33 @@ export function createGenreModule(client: DeezerClient) {
   /**
    * Get genre data.
    */
-  const genre = async (options: Partial<IdOptions> = {}) => {
+  const genre = async (options: Partial<DeezerIdOptions> = {}) => {
     const { id, ...params } = options;
-    return client.request<Genre>(`genre/${id !== undefined ? id : ""}`, params);
+    return client.request<DeezerGenre>(`genre/${id !== undefined ? id : ""}`, params);
   };
 
   /**
    * Get artists for a genre.
    */
-  const artists = async (options: IdOptions) => {
+  const artists = async (options: DeezerIdOptions) => {
     const { id, ...params } = options;
-    return client.request<PaginationResult<Artist>>(`genre/${id}/artists`, params);
+    return client.request<DeezerPaginationResult<DeezerArtist>>(`genre/${id}/artists`, params);
   };
 
   /**
    * Get podcasts for a genre.
    */
-  const podcasts = async (options: IdOptions) => {
+  const podcasts = async (options: DeezerIdOptions) => {
     const { id, ...params } = options;
-    return client.request<PaginationResult<Podcast>>(`genre/${id}/podcasts`, params);
+    return client.request<DeezerPaginationResult<DeezerPodcast>>(`genre/${id}/podcasts`, params);
   };
 
   /**
    * Get radios for a genre.
    */
-  const radios = async (options: IdOptions) => {
+  const radios = async (options: DeezerIdOptions) => {
     const { id, ...params } = options;
-    return client.request<PaginationResult<Radio>>(`genre/${id}/radios`, params);
+    return client.request<DeezerPaginationResult<DeezerRadio>>(`genre/${id}/radios`, params);
   };
 
   return Object.assign(genre, {

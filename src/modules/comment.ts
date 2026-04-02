@@ -1,13 +1,13 @@
 import { DeezerClient } from "../client.js";
-import { Comment, IdOptions } from "../types/index.js";
+import { DeezerComment, DeezerIdOptions } from "../types/index.js";
 
 /**
  * Creates the Comment module.
  * @param client The base DeezerClient instance.
  */
 export function createCommentModule(client: DeezerClient) {
-  return async (options: IdOptions) => {
+  return async (options: DeezerIdOptions) => {
     const { id, ...params } = options;
-    return client.request<Comment>(`comment/${id}`, params);
+    return client.request<DeezerComment>(`comment/${id}`, params);
   };
 }

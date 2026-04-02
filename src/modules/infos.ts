@@ -1,5 +1,5 @@
 import { DeezerClient } from "../client.js";
-import { Infos } from "../types/index.js";
+import { DeezerInfos } from "../types/index.js";
 
 /**
  * Creates the Infos module.
@@ -7,6 +7,6 @@ import { Infos } from "../types/index.js";
  */
 export function createInfosModule(client: DeezerClient) {
   return async () => {
-    return client.request<Infos>(`infos`);
+    return client.request<DeezerInfos>(`infos`);
   };
 }

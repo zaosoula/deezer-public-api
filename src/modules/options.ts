@@ -1,5 +1,5 @@
 import { DeezerClient } from "../client.js";
-import { Options } from "../types/index.js";
+import { DeezerOptions } from "../types/index.js";
 
 /**
  * Creates the Options module.
@@ -7,6 +7,6 @@ import { Options } from "../types/index.js";
  */
 export function createOptionsModule(client: DeezerClient) {
   return async () => {
-    return client.request<Options>(`options`);
+    return client.request<DeezerOptions>(`options`);
   };
 }

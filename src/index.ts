@@ -1,4 +1,5 @@
 import { DeezerClient, DeezerClientOptions } from "./client.js";
+import { version } from "./version.js";
 import { createAlbumModule } from "./modules/album.js";
 import { createArtistModule } from "./modules/artist.js";
 import { createSearchModule } from "./modules/search.js";
@@ -20,6 +21,11 @@ import * as utils from "./utils/index.js";
  * The main Deezer Public API class.
  */
 export class DeezerPublicApi {
+  /**
+   * The current version of the deezer-public-api library.
+   */
+  public static readonly VERSION = version;
+
   public album: ReturnType<typeof createAlbumModule>;
   public artist: ReturnType<typeof createArtistModule>;
   public search: ReturnType<typeof createSearchModule>;
@@ -37,7 +43,7 @@ export class DeezerPublicApi {
   public user: ReturnType<typeof createUserModule>;
   public utils = utils;
 
-  private client: DeezerClient;
+  public client: DeezerClient;
 
   constructor(options: DeezerClientOptions = {}) {
     this.client = new DeezerClient(options);
@@ -67,11 +73,11 @@ export class DeezerPublicApi {
    */
   public async resolve(url: string): Promise<any> {
     let targetUrl = url;
-    if (utils.isShortUrl(url)) {
-      targetUrl = await utils.resolveShortUrl(url, this.client.getFetch());
+    if (this.utils.isShortUrl(url)) {
+      targetUrl = await this.utils.resolveShortUrl(url, this.client.getFetch());
     }
 
-    const parsed = utils.parseDeezerUrl(targetUrl);
+    const parsed = this.utils.parseDeezerUrl(targetUrl);
     if (!parsed) {
       throw new Error(`Invalid Deezer URL: ${targetUrl}`);
     }
@@ -101,8 +107,11 @@ export class DeezerPublicApi {
   }
 }
 
-export * from "./client.js";
+// Core
+export type { DeezerClient } from "./client.js";
+export type { DeezerClientOptions } from "./client.js";
+export { DeezerSearchBuilder } from "./search-builder.js";
+
+// Global Concerns
 export * from "./errors.js";
-export * from "./search-builder.js";
 export * from "./types/index.js";
-export * as utils from "./utils/index.js";

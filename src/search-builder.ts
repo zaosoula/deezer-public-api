@@ -1,25 +1,25 @@
-import { SearchOptions, SearchOrder } from "./types/index.js";
+import { DeezerSearchOptions, DeezerSearchOrder } from "./types/index.js";
 
 /**
  * Fluent builder for complex Deezer search queries.
  */
-export class SearchBuilder {
+export class DeezerSearchBuilder {
   /**
    * Static helper to create a builder.
    */
-  static create(query?: string): SearchBuilder {
-    return new SearchBuilder(query);
+  static create(query?: string): DeezerSearchBuilder {
+    return new DeezerSearchBuilder(query);
   }
 
-  private options: SearchOptions = {};
+  private options: DeezerSearchOptions = {};
   private query: string = "";
   private strictMode?: boolean;
-  private orderValue?: SearchOrder;
+  private orderValue?: DeezerSearchOrder;
   private limitValue?: number;
   private indexValue?: number;
 
   /**
-   * Create a new SearchBuilder.
+   * Create a new DeezerSearchBuilder.
    * @param query Initial query string.
    */
   constructor(query?: string) {
@@ -101,7 +101,7 @@ export class SearchBuilder {
   /**
    * Set the sorting order for the search.
    */
-  order(value: SearchOrder): this {
+  order(value: DeezerSearchOrder): this {
     this.orderValue = value;
     return this;
   }
@@ -132,7 +132,7 @@ export class SearchBuilder {
   /**
    * Get the order value.
    */
-  getOrder(): SearchOrder | undefined {
+  getOrder(): DeezerSearchOrder | undefined {
     return this.orderValue;
   }
 

@@ -5,7 +5,7 @@ import {
 } from "./errors.js";
 import { version } from "./version.js";
 
-import { PaginationResult } from "./types/index.js";
+import { DeezerPaginationResult } from "./types/index.js";
 
 /**
  * Options for initializing the Deezer client.
@@ -124,18 +124,18 @@ export class DeezerClient {
     return data as T;
   }
 
-  private wrapPagination<T>(data: any): PaginationResult<T> {
-    const result: PaginationResult<T> = {
+  private wrapPagination<T>(data: any): DeezerPaginationResult<T> {
+    const result: DeezerPaginationResult<T> = {
       data: data.data,
       total: data.total,
     };
 
     if (data.next) {
-      result.next = () => this.request<PaginationResult<T>>(data.next);
+      result.next = () => this.request<DeezerPaginationResult<T>>(data.next);
     }
 
     if (data.prev) {
-      result.prev = () => this.request<PaginationResult<T>>(data.prev);
+      result.prev = () => this.request<DeezerPaginationResult<T>>(data.prev);
     }
 
     return result;

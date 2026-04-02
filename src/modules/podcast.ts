@@ -1,13 +1,13 @@
 import { DeezerClient } from "../client.js";
-import { Podcast, IdOptions } from "../types/index.js";
+import { DeezerPodcast, DeezerIdOptions } from "../types/index.js";
 
 /**
  * Creates the Podcast module.
  * @param client The base DeezerClient instance.
  */
 export function createPodcastModule(client: DeezerClient) {
-  return async (options: Partial<IdOptions> = {}) => {
+  return async (options: Partial<DeezerIdOptions> = {}) => {
     const { id, ...params } = options;
-    return client.request<Podcast>(`podcast/${id !== undefined ? id : ""}`, params);
+    return client.request<DeezerPodcast>(`podcast/${id !== undefined ? id : ""}`, params);
   };
 }

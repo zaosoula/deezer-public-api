@@ -1,14 +1,14 @@
 import { DeezerClient } from "../client.js";
 import {
-  User,
-  PaginationResult,
-  Album,
-  Artist,
-  Playlist,
-  Podcast,
-  Radio,
-  Track,
-  IdOptions,
+  DeezerUser,
+  DeezerPaginationResult,
+  DeezerAlbum,
+  DeezerArtist,
+  DeezerPlaylist,
+  DeezerPodcast,
+  DeezerRadio,
+  DeezerTrack,
+  DeezerIdOptions,
 } from "../types/index.js";
 
 /**
@@ -16,41 +16,41 @@ import {
  * @param client The base DeezerClient instance.
  */
 export function createUserModule(client: DeezerClient) {
-  const user = async (options: IdOptions) => {
+  const user = async (options: DeezerIdOptions) => {
     const { id, ...params } = options;
-    return client.request<User>(`user/${id}`, params);
+    return client.request<DeezerUser>(`user/${id}`, params);
   };
 
   const charts = Object.assign(
-    async (options: IdOptions) => {
+    async (options: DeezerIdOptions) => {
       const { id, ...params } = options;
       return client.request<any>(`user/${id}/charts`, params);
     },
     {
-      tracks: async (options: IdOptions) => {
+      tracks: async (options: DeezerIdOptions) => {
         const { id, ...params } = options;
-        return client.request<PaginationResult<Track>>(
+        return client.request<DeezerPaginationResult<DeezerTrack>>(
           `user/${id}/charts/tracks`,
           params,
         );
       },
-      albums: async (options: IdOptions) => {
+      albums: async (options: DeezerIdOptions) => {
         const { id, ...params } = options;
-        return client.request<PaginationResult<Album>>(
+        return client.request<DeezerPaginationResult<DeezerAlbum>>(
           `user/${id}/charts/albums`,
           params,
         );
       },
-      playlists: async (options: IdOptions) => {
+      playlists: async (options: DeezerIdOptions) => {
         const { id, ...params } = options;
-        return client.request<PaginationResult<Playlist>>(
+        return client.request<DeezerPaginationResult<DeezerPlaylist>>(
           `user/${id}/charts/playlists`,
           params,
         );
       },
-      artists: async (options: IdOptions) => {
+      artists: async (options: DeezerIdOptions) => {
         const { id, ...params } = options;
-        return client.request<PaginationResult<Artist>>(
+        return client.request<DeezerPaginationResult<DeezerArtist>>(
           `user/${id}/charts/artists`,
           params,
         );
@@ -59,41 +59,41 @@ export function createUserModule(client: DeezerClient) {
   );
 
   return Object.assign(user, {
-    albums: async (options: IdOptions) => {
+    albums: async (options: DeezerIdOptions) => {
       const { id, ...params } = options;
-      return client.request<PaginationResult<Album>>(`user/${id}/albums`, params);
+      return client.request<DeezerPaginationResult<DeezerAlbum>>(`user/${id}/albums`, params);
     },
-    artists: async (options: IdOptions) => {
+    artists: async (options: DeezerIdOptions) => {
       const { id, ...params } = options;
-      return client.request<PaginationResult<Artist>>(`user/${id}/artists`, params);
+      return client.request<DeezerPaginationResult<DeezerArtist>>(`user/${id}/artists`, params);
     },
-    flow: async (options: IdOptions) => {
+    flow: async (options: DeezerIdOptions) => {
       const { id, ...params } = options;
-      return client.request<PaginationResult<Track>>(`user/${id}/flow`, params);
+      return client.request<DeezerPaginationResult<DeezerTrack>>(`user/${id}/flow`, params);
     },
-    followings: async (options: IdOptions) => {
+    followings: async (options: DeezerIdOptions) => {
       const { id, ...params } = options;
-      return client.request<PaginationResult<Artist>>(`user/${id}/followings`, params);
+      return client.request<DeezerPaginationResult<DeezerArtist>>(`user/${id}/followings`, params);
     },
-    followers: async (options: IdOptions) => {
+    followers: async (options: DeezerIdOptions) => {
       const { id, ...params } = options;
-      return client.request<PaginationResult<User>>(`user/${id}/followers`, params);
+      return client.request<DeezerPaginationResult<DeezerUser>>(`user/${id}/followers`, params);
     },
-    playlists: async (options: IdOptions) => {
+    playlists: async (options: DeezerIdOptions) => {
       const { id, ...params } = options;
-      return client.request<PaginationResult<Playlist>>(`user/${id}/playlists`, params);
+      return client.request<DeezerPaginationResult<DeezerPlaylist>>(`user/${id}/playlists`, params);
     },
-    podcasts: async (options: IdOptions) => {
+    podcasts: async (options: DeezerIdOptions) => {
       const { id, ...params } = options;
-      return client.request<PaginationResult<Podcast>>(`user/${id}/podcasts`, params);
+      return client.request<DeezerPaginationResult<DeezerPodcast>>(`user/${id}/podcasts`, params);
     },
-    radios: async (options: IdOptions) => {
+    radios: async (options: DeezerIdOptions) => {
       const { id, ...params } = options;
-      return client.request<PaginationResult<Radio>>(`user/${id}/radios`, params);
+      return client.request<DeezerPaginationResult<DeezerRadio>>(`user/${id}/radios`, params);
     },
-    tracks: async (options: IdOptions) => {
+    tracks: async (options: DeezerIdOptions) => {
       const { id, ...params } = options;
-      return client.request<PaginationResult<Track>>(`user/${id}/tracks`, params);
+      return client.request<DeezerPaginationResult<DeezerTrack>>(`user/${id}/tracks`, params);
     },
     charts,
   });
