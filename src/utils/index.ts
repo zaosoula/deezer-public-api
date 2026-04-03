@@ -34,7 +34,7 @@ export function parseDeezerUrl(url: string): ParsedDeezerUrl | null {
 
   try {
     const parsed = new URL(url);
-    if (!parsed.hostname.includes("deezer.com")) return null;
+    if (parsed.hostname !== "deezer.com" && !parsed.hostname.endsWith(".deezer.com")) return null;
     
     // Handle standard URLs: deezer.com/{language}/{type}/{id} or deezer.com/{type}/{id}
     const pathParts = parsed.pathname.split("/").filter(Boolean);
