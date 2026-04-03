@@ -1,0 +1,40 @@
+{
+  "types": {
+    "feat": {
+      "title": "🚀 Enhancements",
+      "semver": "minor"
+    },
+    "fix": {
+      "title": "🩹 Fixes",
+      "semver": "patch"
+    },
+    "perf": {
+      "title": "💅 Performance",
+      "semver": "patch"
+    },
+    "refactor": {
+      "title": "💅 Refactor",
+      "semver": "patch"
+    },
+    "docs": {
+      "title": "📖 Documentation",
+      "semver": false
+    },
+    "chore": {
+      "title": "🏡 Chore",
+      "semver": false
+    },
+    "test": {
+      "title": "✅ Tests",
+      "semver": false
+    },
+    "style": {
+      "title": "💅 Style",
+      "semver": "patch"
+    },
+    "ci": {
+      "title": "🤖 CI",
+      "semver": false
+    }
+  }
+}

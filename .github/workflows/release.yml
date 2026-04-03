@@ -97,8 +97,25 @@ jobs:
             BUMP_FLAG="--${{ github.event.inputs.bump }}"
           fi
           
-          # Use changelogen v0.6 syntax
-          npx changelogen --release $BUMP_FLAG --no-github --push
+          # Use changelogen v0.6 syntax with pre-check for behavioral changes
+          SHOULD_RELEASE=true
+          if [[ "${{ github.event_name }}" != "workflow_dispatch" && "$BUMP_FLAG" == "" ]]; then
+            LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+            if [ -n "$LAST_TAG" ]; then
+              COMMITS_SINCE_TAG=$(git log "$LAST_TAG"..HEAD --pretty=format:"%s")
+              BUMP_REQUIRED=$(echo "$COMMITS_SINCE_TAG" | grep -Ei "^(feat|fix|perf)(\(.+\))?:" | wc -l)
+              if [ "$BUMP_REQUIRED" -eq 0 ]; then
+                echo "No behavioral changes (feat/fix/perf) found since $LAST_TAG. Skipping version bump."
+                SHOULD_RELEASE=false
+              fi
+            fi
+          fi
+
+          if [ "$SHOULD_RELEASE" = true ]; then
+            npx changelogen --release $BUMP_FLAG --no-github --push
+          else
+            npx changelogen --no-github
+          fi
           
           NEW_VERSION=$(node -p "require('./package.json').version")
           
