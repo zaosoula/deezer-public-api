@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## v2.1.4
+
+[compare changes](https://github.com/zaosoula/deezer-public-api/compare/v2.1.3...v2.1.4)
+
+### 🩹 Fixes
+
+- Sanitize URL hostname ([27def25](https://github.com/zaosoula/deezer-public-api/commit/27def25))
+
+### 🏡 Chore
+
+- Configure stricter release triggers ([8bb5a09](https://github.com/zaosoula/deezer-public-api/commit/8bb5a09))
+
+### ❤️ Contributors
+
+- Zao Soula ([@zaosoula](https://github.com/zaosoula))
+
 ## v2.1.3
 
 [compare changes](https://github.com/zaosoula/deezer-public-api/compare/v2.1.2...v2.1.3)
