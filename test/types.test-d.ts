@@ -65,6 +65,8 @@ describe("Type Definitions", () => {
       total?: number;
       next?: () => Promise<DeezerPaginationResult<any>>;
       prev?: () => Promise<DeezerPaginationResult<any>>;
+      nextIndex?: number;
+      prevIndex?: number;
     }>();
   });
 });

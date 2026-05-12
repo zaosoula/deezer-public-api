@@ -10,6 +10,8 @@ export interface DeezerPaginationResult<T> {
   total?: number;
   next?: () => Promise<DeezerPaginationResult<T>>;
   prev?: () => Promise<DeezerPaginationResult<T>>;
+  nextIndex?: number;
+  prevIndex?: number;
 }
 
 /**

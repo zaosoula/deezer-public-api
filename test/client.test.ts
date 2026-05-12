@@ -119,6 +119,7 @@ describe("DeezerClient", () => {
 
     const response = await api.client.request<any>("test");
     expect(response.next).toBeDefined();
+    expect(response.nextIndex).toBe(1);
 
     // Test that .next() triggers another request
     const nextMockResponse = {
@@ -147,6 +148,7 @@ describe("DeezerClient", () => {
 
     const response = await api.client.request<any>("test");
     expect(response.prev).toBeDefined();
+    expect(response.prevIndex).toBe(0);
 
     const prevMockResponse = {
       ok: true,

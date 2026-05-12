@@ -132,10 +132,28 @@ export class DeezerClient {
 
     if (data.next) {
       result.next = () => this.request<DeezerPaginationResult<T>>(data.next);
+      try {
+        const url = new URL(data.next);
+        const index = url.searchParams.get("index");
+        if (index) {
+          result.nextIndex = parseInt(index, 10);
+        }
+      } catch (e) {
+        // Ignore parsing errors
+      }
     }
 
     if (data.prev) {
       result.prev = () => this.request<DeezerPaginationResult<T>>(data.prev);
+      try {
+        const url = new URL(data.prev);
+        const index = url.searchParams.get("index");
+        if (index) {
+          result.prevIndex = parseInt(index, 10);
+        }
+      } catch (e) {
+        // Ignore parsing errors
+      }
     }
 
     return result;

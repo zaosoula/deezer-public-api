@@ -462,6 +462,7 @@ exports[`Live API Runtime Validation (Snapshots) > validates Search endpoint dat
     },
   ],
   "next": "function",
+  "nextIndex": "number",
   "total": "number",
 }
 `;
@@ -512,6 +513,7 @@ exports[`Live API Runtime Validation (Snapshots) > validates Search with Builder
     },
   ],
   "next": "function",
+  "nextIndex": "number",
   "total": "number",
 }
 `;
@@ -536,6 +538,7 @@ exports[`Live API Runtime Validation (Snapshots) > validates Specialized Search 
     },
   ],
   "next": "function",
+  "nextIndex": "number",
   "total": "number",
 }
 `;
