@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## v2.2.0
+
+[compare changes](https://github.com/zaosoula/deezer-public-api/compare/v2.1.4...v2.2.0)
+
+### 🚀 Enhancements
+
+- Expose nextIndex and prevIndex properties on pagination results by parsing the response URL parameters ([ad7d3c1](https://github.com/zaosoula/deezer-public-api/commit/ad7d3c1))
+
+### ❤️ Contributors
+
+- Zao Soula ([@zaosoula](https://github.com/zaosoula))
+
 ## v2.1.4
 
 [compare changes](https://github.com/zaosoula/deezer-public-api/compare/v2.1.3...v2.1.4)
