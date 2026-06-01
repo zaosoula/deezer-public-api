@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## v2.2.1
+
+[compare changes](https://github.com/zaosoula/deezer-public-api/compare/v2.2.0...v2.2.1)
+
+### 🩹 Fixes
+
+- **types:** Add contributors and other missing fields ([7d19402](https://github.com/zaosoula/deezer-public-api/commit/7d19402))
+
+### 📖 Documentation
+
+- **coverage:** Auto-update coverage badge [skip ci] ([76b252d](https://github.com/zaosoula/deezer-public-api/commit/76b252d))
+
+### 🏡 Chore
+
+- Update github actions ([867c75f](https://github.com/zaosoula/deezer-public-api/commit/867c75f))
+
+### ❤️ Contributors
+
+- Zao Soula ([@zaosoula](https://github.com/zaosoula))
+
 ## v2.2.0
 
 [compare changes](https://github.com/zaosoula/deezer-public-api/compare/v2.1.4...v2.2.0)
