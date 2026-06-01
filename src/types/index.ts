@@ -81,6 +81,7 @@ export interface DeezerArtist {
   radio?: boolean;
   tracklist: string;
   type: "artist";
+  role?: string;
 }
 
 export interface DeezerAlbum {
@@ -94,6 +95,7 @@ export interface DeezerAlbum {
   cover_medium: string;
   cover_big: string;
   cover_xl: string;
+  md5_image?: string;
   genre_id?: number;
   genres?: {
     data: DeezerGenre[];
@@ -108,9 +110,11 @@ export interface DeezerAlbum {
   tracklist: string;
   explicit_lyrics?: boolean;
   explicit_content_lyrics?: number;
+  explicit_content_cover?: number;
   explicit_content_display?: number;
   type: "album";
   artist?: DeezerArtist;
+  contributors?: DeezerArtist[];
   tracks?: {
     data: DeezerTrack[];
   };
@@ -132,6 +136,7 @@ export interface DeezerTrack {
   release_date?: string;
   explicit_lyrics: boolean;
   explicit_content_lyrics: number;
+  explicit_content_cover?: number;
   explicit_content_display: number;
   preview: string;
   bpm?: number;
@@ -139,6 +144,7 @@ export interface DeezerTrack {
   available_countries?: string[];
   contributors?: DeezerArtist[];
   md5_image: string;
+  track_token?: string;
   artist: DeezerArtist;
   album?: DeezerAlbum;
   type: "track";
