@@ -172,6 +172,7 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: build-output
+          path: .
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
@@ -192,6 +193,7 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: build-output
+          path: .
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
