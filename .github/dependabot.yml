@@ -18,6 +18,9 @@ updates:
       interval: "weekly"
     allow:
       - dependency-type: "direct"
+    groups:
+      docs-npm:
+        patterns: [ "*" ]
       
   - package-ecosystem: "github-actions"
     directory: "/"
