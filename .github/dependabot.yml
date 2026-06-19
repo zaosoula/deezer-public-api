@@ -9,11 +9,15 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    allow:
+      - dependency-type: "direct"
 
   - package-ecosystem: "npm"
     directory: "/docs"
     schedule:
       interval: "weekly"
+    allow:
+      - dependency-type: "direct"
       
   - package-ecosystem: "github-actions"
     directory: "/"

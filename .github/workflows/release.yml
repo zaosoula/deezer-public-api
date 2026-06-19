@@ -89,6 +89,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Pull latest changes (like badge commit) to prevent push collision race conditions
+          git pull origin main --rebase
+          
           OLD_VERSION=$(node -p "require('./package.json').version")
           
           # Determine bump flag from input
