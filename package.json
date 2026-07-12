@@ -61,7 +61,7 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.19.2",
     "type-fest": "^5.5.0",
-    "typescript": "^6.0.2",
+    "typescript": "^7.0.2",
     "unbuild": "^3.0.0",
     "vitest": "^4.1.2"
   },
